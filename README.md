@@ -1,10 +1,1 @@
-# About
-
-
-# Description
-
-
-# How to
-
-
-# Notes
+# A repo for Otus Fullstack JS course
