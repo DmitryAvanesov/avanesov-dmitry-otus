@@ -8,4 +8,3 @@ I used valueOf property of the function to store passed numbers. To implement co
 Launch javascript-1.html file and check the console.
 
 # Notes
--
