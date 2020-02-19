@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "file": "${workspaceFolder}/pages/javascript-1.html"
+            "file": "${workspaceFolder}/pages/javascript-2.html"
         }
     ]
 }
