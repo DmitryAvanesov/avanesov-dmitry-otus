@@ -1,10 +1,11 @@
 # About
-Here I implemented the sum() function that can summarize passed numbers as follows: sum(a)(b)...(n) = a + b + ... + n. Calling the function without parameters returns the sum of all previously passed numbers.
+Here I implemented the server and requests scripts in order to send sequential or parallel requests to the server.
 
 # Description
-I used valueOf property of the function to store passed numbers. To implement consecutive calls I returned the function itself in case of a defined parameter.
+Server works 100ms on each request. In case of sequential requests, I just sent them one-by-one in a loop. To perform parallel ones I used 'parallel-http-request' module.
 
 # How to
-Launch javascript-1.html file and check the console.
+Execute 'node node-1-request.js *numberOfRequests* *requestType*' in terminal.
 
 # Notes
+Node.js breaks my brain lol.
