@@ -2,10 +2,9 @@
   "name": "node-2",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
-  "main": "node-2-main.js",
+  "main": "node-2-server.js",
   "scripts": {
-    "start": "node ./node-2-main.js {'id':1,'items':[{'id':2,'items':[{'id':3}]}]}",
+    "start": "node -r esm ./node-2-server.js {\\\"id\\\":1,\\\"items\\\":[{\\\"id\\\":2,\\\"items\\\":[{\\\"id\\\":3}]}]}",
     "test": "jest"
   },
   "repository": {
@@ -21,6 +20,6 @@
   "dependencies": {
     "esm": "^3.2.25",
     "jest": "^25.1.0",
-    "lit-html": "^1.2.1"
+    "lit-element": "^2.3.1"
   }
 }

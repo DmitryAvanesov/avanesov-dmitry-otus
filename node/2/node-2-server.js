@@ -1,25 +1,22 @@
-import { html } from 'lit-html';
 import { createServer } from 'http';
+import * as fs from 'fs';
 
 export const hostname = '127.0.0.1';
 export const port = 3000;
+let server = undefined;
 
-const server = createServer((req, res) => {
-  const data = [];
+fs.readFile('./node-2.html', (err, html) => {
+  if (err) {
+    throw err;
+  }
 
-  req.on('data', chunk => {
-    data.push(chunk);
+  server = createServer((req, res) => {
+    res.writeHeader(200, { "Content-Type": "text/html" });
+    res.write(html);
+    res.end();
   });
 
-  req.on('end', () => {
-    console.log(JSON.parse(data));
+  server.listen(port, hostname, () => {
+    console.log(`Server started at http://${hostname}:${port}`);
   });
-
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html');
-  res.end(JSON.parse(data).dom);
-});
-
-server.listen(port, hostname, () => {
-  console.log(`Server started at http://${hostname}:${port}`);
 });

@@ -1,14 +1,55 @@
-import { html } from 'lit-html';
+import { LitElement, html } from 'lit-element';
 import * as http from 'http';
-import { hostname, port } from './node-2-server.js';
 
 const structure = process.argv[2];
-const parseObjectToDOM = obj => html`${obj}`;
 
-console.log(structure);
+class MyTree extends LitElement {
+  static get properties() {
+    return {
+
+    };
+  }
+
+  constructor() {
+    super();
+
+  }
+
+  render() {
+    return html`
+      <div></div>
+    `;
+  }
+}
+
+customElements.define('my-tree', MyTree);
+
+class MyLeaf extends LitElement {
+  static get properties() {
+    return {
+      id: { type: Number },
+      nestingLevel: { type: Number }
+    };
+  }
+
+  constructor() {
+    super();
+  }
+
+  render() {
+    return html`
+      <div>${this.id}</div>
+    `;
+  }
+}
+
+customElements.define('my-leaf', MyLeaf);
+
 
 const data = JSON.stringify({
-  dom: parseObjectToDOM(structure)
+  documentObjectModel: html`<my-tree>
+    <my-leaf .id=1></my-leaf>
+  </my-tree>`
 });
 
 const options = {
