@@ -1,0 +1,26 @@
+{
+  "name": "node-2",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "node-2-main.js",
+  "scripts": {
+    "start": "node ./node-2-main.js {'id':1,'items':[{'id':2,'items':[{'id':3}]}]}",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmitryAvanesov/avanesov-dmitry-otus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DmitryAvanesov/avanesov-dmitry-otus/issues"
+  },
+  "homepage": "https://github.com/DmitryAvanesov/avanesov-dmitry-otus#readme",
+  "dependencies": {
+    "esm": "^3.2.25",
+    "jest": "^25.1.0",
+    "lit-html": "^1.2.1"
+  }
+}
