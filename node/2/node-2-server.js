@@ -3,14 +3,13 @@ import * as fs from 'fs';
 
 export const hostname = '127.0.0.1';
 export const port = 3000;
-let server = undefined;
 
-fs.readFile('./node-2.html', (err, html) => {
+fs.readFile('node-2.html', (err, html) => {
   if (err) {
     throw err;
   }
 
-  server = createServer((req, res) => {
+  const server = createServer((req, res) => {
     res.writeHeader(200, { "Content-Type": "text/html" });
     res.write(html);
     res.end();
