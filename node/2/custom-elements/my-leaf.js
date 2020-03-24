@@ -2,17 +2,17 @@ import { LitElement, html } from 'lit-element';
 
 class MyLeaf extends LitElement {
   static get properties() {
-    return { leaf: Object };
+    return { subtree: String };
   }
 
   render() {
-    this.leaf = JSON.parse(this.leaf);
+    this.subtree = JSON.parse(this.subtree);
 
     return html`
-      <li id="${this.leaf.id}">
-        ${this.leaf.id}
-        ${'items' in this.leaf ? html`
-          <ul>${this.renderChildren(this.leaf.items)}</ul>
+      <li id="${this.subtree.id}">
+        ${this.subtree.id}
+        ${'items' in this.subtree ? html`
+          <ul>${this.renderChildren(this.subtree.items)}</ul>
         ` : html``}
       </li>
     `;
@@ -21,7 +21,7 @@ class MyLeaf extends LitElement {
   renderChildren(children) {
     return html`
       ${children.map(child => html`
-        <my-leaf leaf=${JSON.stringify(child)}></my-leaf>
+        <my-leaf subtree=${JSON.stringify(child)}></my-leaf>
       `)}
     `;
   }

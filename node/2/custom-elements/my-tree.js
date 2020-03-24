@@ -3,13 +3,13 @@ import './my-leaf';
 
 class MyTree extends LitElement {
   static get properties() {
-    return { structure: String };
+    return { tree: String };
   }
 
   render() {
     return html`
       <ul>
-        <my-leaf leaf=${this.structure}></my-leaf>
+        <my-leaf subtree=${this.tree}></my-leaf>
       </ul>
     `;
   }
