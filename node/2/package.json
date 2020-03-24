@@ -4,7 +4,7 @@
   "description": "",
   "main": "node-2-server.js",
   "scripts": {
-    "start": "es-dev-server --app-index node-2.html --node-resolve --watch --open",
+    "start": "es-dev-server --app-index index.html --node-resolve --watch --open",
     "test": "jest"
   },
   "repository": {
