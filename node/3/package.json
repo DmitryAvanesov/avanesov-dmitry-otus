@@ -1,0 +1,24 @@
+{
+  "name": "node-3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tree.js",
+  "type": "module",
+  "scripts": {
+    "tree": "node tree.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmitryAvanesov/avanesov-dmitry-otus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DmitryAvanesov/avanesov-dmitry-otus/issues"
+  },
+  "homepage": "https://github.com/DmitryAvanesov/avanesov-dmitry-otus#readme",
+  "dependencies": {
+    "es-dev-server": "^1.45.3"
+  }
+}
