@@ -1,13 +1,18 @@
 import * as fs from 'fs';
 
-const pathToObject = (path, tree) => {
+var tree = {
+  files: [],
+  dirs: []
+};
+
+const getTreeFromPath = async path => {
   fs.readdir(path, (err, files) => {
     files.forEach(file => {
       const innerPath = `${path}/${file}`;
 
       if (fs.lstatSync(innerPath).isDirectory()) {
         tree.dirs.push(innerPath);
-        tree = pathToObject(innerPath, tree);
+        getTreeFromPath(innerPath, tree);
       }
 
       if (fs.lstatSync(innerPath).isFile()) {
@@ -15,11 +20,9 @@ const pathToObject = (path, tree) => {
       }
     });
   });
-
-  return tree;
 }
 
 const root = process.argv[2];
-const tree = pathToObject(root, { files: [], dirs: [] });
+getTreeFromPath(root);
 
 setTimeout(() => console.log(tree), 1000);

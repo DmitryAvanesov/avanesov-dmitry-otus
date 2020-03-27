@@ -5,7 +5,7 @@
   "main": "tree.js",
   "type": "module",
   "scripts": {
-    "tree": "node --inspect-brk tree.js",
+    "tree": "node tree.js",
     "test": "jest"
   },
   "repository": {
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/DmitryAvanesov/avanesov-dmitry-otus#readme",
   "dependencies": {
-    "es-dev-server": "^1.45.3"
+    "es-dev-server": "^1.45.3",
+    "util": "^0.12.2"
   }
 }
