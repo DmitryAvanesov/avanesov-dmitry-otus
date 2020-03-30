@@ -1,0 +1,26 @@
+{
+  "name": "node-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "node-2-server.js",
+  "scripts": {
+    "start": "es-dev-server --app-index index.html --node-resolve --watch --open",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmitryAvanesov/avanesov-dmitry-otus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DmitryAvanesov/avanesov-dmitry-otus/issues"
+  },
+  "homepage": "https://github.com/DmitryAvanesov/avanesov-dmitry-otus#readme",
+  "dependencies": {
+    "es-dev-server": "^1.45.3",
+    "esm": "^3.2.25",
+    "jest": "^25.1.0",
+    "lit-element": "^2.3.1"
+  }
+}
