@@ -1,6 +1,5 @@
 const fs = require('fs');
 const LineByLineReader = require('line-by-line');
-
 const separatedFilesDirectory = './data/separated-files'
 
 const writeFile = (chunks, curFile) => {
@@ -18,7 +17,7 @@ const writeFile = (chunks, curFile) => {
   writeStream.write(array.join('\n'));
 };
 
-const createSeparatedSortedFiles = async () => {
+const start = async () => {
   let curFile = 0;
   let chunks = [];
 
@@ -64,6 +63,7 @@ const sortAllNumbers = numberOfSeparatedFiles => {
   for (let curFileIndex = 0; curFileIndex < numberOfSeparatedFiles; curFileIndex++) {
     const readStream = fs.createReadStream(`${separatedFilesDirectory}/numbers${curFileIndex}.txt`);
     let writeStream = fs.createWriteStream('./data/result.txt');
+    
     writeStream.write('');
     writeStream = fs.createWriteStream('./data/result.txt', { flags: 'a' });
 
@@ -75,22 +75,25 @@ const sortAllNumbers = numberOfSeparatedFiles => {
       curMinNumbers[curFileIndex] = parseInt(line);
 
       if (curMinNumbers.filter(x => typeof (x) === 'number').length === numberOfSeparatedFiles) {
-        sortFilesAsync(lineReadersArray, curMinNumbers, writeStream);
+        writeNextMin(lineReadersArray, curMinNumbers, writeStream);
       }
     });
 
     lineReader.on('end', () => {
       curMinNumbers[curFileIndex] = 1000000;
       numberOfStreamsEnded++;
-      console.log(numberOfStreamsEnded);
+
+      if (numberOfStreamsEnded < numberOfSeparatedFiles) {
+        writeNextMin(lineReadersArray, curMinNumbers, writeStream);
+      }
     });
   }
 };
 
-const sortFilesAsync = (lineReadersArray, curMinNumbers, writeStream) => {
+const writeNextMin = (lineReadersArray, curMinNumbers, writeStream) => {
   const minIndex = curMinNumbers.indexOf(Math.min(...curMinNumbers));
   writeStream.write(`${curMinNumbers[minIndex].toString()}\n`);
   lineReadersArray[minIndex].resume();
 }
 
-createSeparatedSortedFiles();
+start();
