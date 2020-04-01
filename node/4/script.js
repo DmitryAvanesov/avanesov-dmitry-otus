@@ -34,7 +34,7 @@ const createSeparatedSortedFiles = async () => {
   });
 
   const readStream = fs.createReadStream('./data/numbers.txt');
-  const minDataSize = 5;
+  const minDataSize = 6;
 
   for await (const chunk of readStream) {
     chunks.push(chunk);
@@ -56,40 +56,41 @@ const createSeparatedSortedFiles = async () => {
   });
 };
 
-const sortAllNumbers = async numberOfSeparatedFiles => {
-  const lineReadersArray = [];
-  let nums = [];
+const sortAllNumbers = numberOfSeparatedFiles => {
+  const lineReadersArray = new Array(numberOfSeparatedFiles);
+  const curMinNumbers = new Array(numberOfSeparatedFiles);
+  let numberOfStreamsEnded = 0;
 
-  for (let i = 0; i < numberOfSeparatedFiles; i++) {
-    const readStream = fs.createReadStream(`${separatedFilesDirectory}/numbers${i}.txt`);
+  for (let curFileIndex = 0; curFileIndex < numberOfSeparatedFiles; curFileIndex++) {
+    const readStream = fs.createReadStream(`${separatedFilesDirectory}/numbers${curFileIndex}.txt`);
+    let writeStream = fs.createWriteStream('./data/result.txt');
+    writeStream.write('');
+    writeStream = fs.createWriteStream('./data/result.txt', { flags: 'a' });
+
     const lineReader = new LineByLineReader(readStream);
+    lineReadersArray[curFileIndex] = lineReader;
 
     lineReader.on('line', line => {
       lineReader.pause();
-      nums.push(line);
+      curMinNumbers[curFileIndex] = parseInt(line);
+
+      if (curMinNumbers.filter(x => typeof (x) === 'number').length === numberOfSeparatedFiles) {
+        sortFilesAsync(lineReadersArray, curMinNumbers, writeStream);
+      }
     });
 
     lineReader.on('end', () => {
-      // All lines are read, file is closed now.
+      curMinNumbers[curFileIndex] = 1000000;
+      numberOfStreamsEnded++;
+      console.log(numberOfStreamsEnded);
     });
-
-    lineReadersArray.push(lineReader);
   }
-
-  setTimeout(() => console.log(nums), 2000);
-
-  // readStreamArray.forEach(async curStream => {
-  //   const readlineInterface = readline.createInterface({
-  //     input: curStream
-  //   });
-
-  //   for await (const line of readlineInterface) {
-  //     nums.push(parseInt(line));
-  //     curStream.pause();
-  //   }
-
-  //   console.log(nums);
-  // });
 };
+
+const sortFilesAsync = (lineReadersArray, curMinNumbers, writeStream) => {
+  const minIndex = curMinNumbers.indexOf(Math.min(...curMinNumbers));
+  writeStream.write(`${curMinNumbers[minIndex].toString()}\n`);
+  lineReadersArray[minIndex].resume();
+}
 
 createSeparatedSortedFiles();
