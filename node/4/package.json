@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "script.js",
-  "type": "module",
   "scripts": {
     "start": "node --max-old-space-size=50 script.js",
     "generate": "node --inspect-brk file-generator.js",
@@ -20,6 +19,6 @@
   },
   "homepage": "https://github.com/DmitryAvanesov/avanesov-dmitry-otus#readme",
   "dependencies": {
-    "util": "^0.12.2"
+    "line-by-line": "^0.1.6"
   }
 }
