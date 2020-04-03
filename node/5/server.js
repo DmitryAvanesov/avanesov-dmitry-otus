@@ -11,7 +11,17 @@ app.get('/', (req, res) => {
 });
 
 app.get('/create', (req, res) => {
-  res.send('Creation');
+  console.log('Got');
+  res.sendFile('./pages/create.html', { root: path.resolve() });
+});
+
+app.post('/create', (req, res) => {
+  console.log('Posted');
+  res.redirect('/show-feed');
+});
+
+app.get('/show-feed', (req, res) => {
+  res.send('It is my feed');
 });
 
 app.listen(port);
