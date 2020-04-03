@@ -2,11 +2,10 @@
   "name": "node-5",
   "version": "1.0.0",
   "description": "",
-  "private": true,
+  "main": "./server.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
     "start": "node ./server.js"
   },
   "repository": {
@@ -19,8 +18,8 @@
     "url": "https://github.com/DmitryAvanesov/avanesov-dmitry-otus/issues"
   },
   "homepage": "https://github.com/DmitryAvanesov/avanesov-dmitry-otus#readme",
-  "dependencies": {},
-  "devDependencies": {
-    "express": "^4.17.1"
+  "dependencies": {
+    "express": "^4.17.1",
+    "rss-parser": "^3.7.6"
   }
 }
