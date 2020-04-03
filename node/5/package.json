@@ -1,0 +1,25 @@
+{
+  "name": "node-5",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmitryAvanesov/avanesov-dmitry-otus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DmitryAvanesov/avanesov-dmitry-otus/issues"
+  },
+  "homepage": "https://github.com/DmitryAvanesov/avanesov-dmitry-otus#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
+}
