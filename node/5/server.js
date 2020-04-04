@@ -43,7 +43,7 @@ app.post('/create', async (req, res) => {
   try {
     const feed = await parser.parseURL(req.body.url);
 
-    Url.find({ address: req.body.url }, async (err, docs) => {
+    Url.find({ address: req.body.url }, async (err, urls) => {
       if (err) throw err;
 
       const addDocuments = () => {
@@ -53,12 +53,12 @@ app.post('/create', async (req, res) => {
         });
       };
 
-      if (docs.length == 0) {
+      if (urls.length == 0) {
         const url = new Url({ address: req.body.url });
         await url.save();
 
         addDocuments();
-    
+
         res.render('create', {
           result: 'Success: documents and URL added'
         });
@@ -79,8 +79,24 @@ app.post('/create', async (req, res) => {
   }
 });
 
-app.get('/show-feed', (req, res) => {
-  res.send('It is my feed');
+app.get('/show-urls', (req, res) => {
+  Url.find((err, urls) => {
+    if (err) throw err;
+    
+    res.render('show-urls', {
+      data: urls
+    });
+  });
+});
+
+app.get('/show-documents', (req, res) => {
+  Document.find((err, documents) => {
+    if (err) throw err;
+
+    res.render('show-documents', {
+      data: documents
+    });
+  });
 });
 
 app.listen(port);
