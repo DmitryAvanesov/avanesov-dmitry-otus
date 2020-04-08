@@ -1,0 +1,26 @@
+{
+  "name": "react-1",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx webpack",
+    "start": "npx webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmitryAvanesov/avanesov-dmitry-otus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DmitryAvanesov/avanesov-dmitry-otus/issues"
+  },
+  "homepage": "https://github.com/DmitryAvanesov/avanesov-dmitry-otus#readme",
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}
