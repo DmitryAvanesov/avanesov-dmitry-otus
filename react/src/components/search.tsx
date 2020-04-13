@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, Dispatch, SetStateAction } from 'react';
 
 export function Search(): JSX.Element {
   // Объявление переменной состояния, которую мы назовём "count"
-  const [count, setCount]: [number, React.Dispatch<React.SetStateAction<number>>] = useState(0);
+  const [count, setCount]: [number, Dispatch<SetStateAction<number>>] = useState(0);
 
   return (
     <div>
