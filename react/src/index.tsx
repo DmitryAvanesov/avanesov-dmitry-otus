@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-import { Greeting } from "./components/greeting";
+import { Search } from "./components/search";
 
 ReactDOM.render(
-  <Greeting
-    awesomeness={parseFloat((Math.random() * 100).toFixed(1))}
-  />,
+  <Search />,
   document.querySelector("#root")
 );
