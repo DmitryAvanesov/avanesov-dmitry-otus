@@ -2,3 +2,5 @@
 node_modules/
 package-lock.json
 node/4/data/separated-files/
+main.js
+main.js.map
