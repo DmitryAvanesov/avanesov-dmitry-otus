@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-import { Search } from "./components/search";
+import { MainContainer } from "./components/main-container";
 
 ReactDOM.render(
-  <Search />,
+  <MainContainer />,
   document.querySelector("#root")
 );
