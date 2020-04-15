@@ -1,4 +1,4 @@
-import React, { useState, Dispatch, SetStateAction } from 'react';
+import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import { SearchContainer } from './search-container';
 import { FavoriteContainer } from './favorite-container';
 
@@ -44,7 +44,7 @@ export function MainContainer(): JSX.Element {
   };
 
   const handleAddToFavorite = (city: string) => {
-    const newFavorites = favorites;
+    const newFavorites = [...favorites];
     newFavorites.push(city);
     setFavorites(newFavorites);
   };

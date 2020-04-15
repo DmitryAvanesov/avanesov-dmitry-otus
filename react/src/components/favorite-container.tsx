@@ -8,8 +8,7 @@ interface IProps {
 export function FavoriteContainer(props: IProps): JSX.Element {
   return (
     <div className="favorite-container">
-      {/* {props.cities.map((city: string) => <FavoriteCity name={city} />)} */}
-      {props.cities.length}
+      {props.cities.map((city: string) => <FavoriteCity key={props.cities.indexOf(city)} name={city} />)}
     </div>
   );
 }

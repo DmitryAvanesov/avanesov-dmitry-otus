@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent } from 'react';
+import React, { useState, Dispatch, SetStateAction, ChangeEvent, MouseEvent } from 'react';
 import { SearchInput } from './seacrh-input';
 import { SearchButton } from './search-button';
 
@@ -8,20 +8,25 @@ interface IProps {
 }
 
 export function SearchContainer(props: IProps): JSX.Element {
-  const selected = new Array<string>();
-  let query: string = '';
+  const [selected, setSelected]: [Array<string>, Dispatch<SetStateAction<Array<string>>>] = useState(new Array<string>());
+  const [query, setQuery]: [string, Dispatch<SetStateAction<string>>] = useState('');
 
   const handleSearchInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    query = event.target.value;
+    setQuery(event.target.value);
   };
 
   const handleSearchButtonClick = (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>): void => {
+    console.log(selected, query);
+
     if (props.cities.includes(query)) {
       if (selected.includes(query)) {
         alert('This city is already in favorites list');
       }
       else {
-        selected.push(query);
+        const newSelected = [...selected];
+        newSelected.push(query);
+        setSelected(newSelected);
+
         props.callbackAddToFavorite(query);
       }
     }
