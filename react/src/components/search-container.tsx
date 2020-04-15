@@ -14,7 +14,7 @@ export function SearchContainer(props: IProps): JSX.Element {
   const [errorMessage, setErrorMessage]: [string, Dispatch<SetStateAction<string>>] = useState('');
 
   const handleSearchInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setQuery(event.target.value);
+    setQuery(event.target.value.toLowerCase());
   };
 
   const handleSearchButtonClick = (): void => {
