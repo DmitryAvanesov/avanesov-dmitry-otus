@@ -1,0 +1,16 @@
+$favorite-city-color: rgb(154, 198, 255);
+
+.favorite-container {
+  margin-top: 25px;
+  width: 25%;
+
+  .favorite-city {
+    width: fit-content;
+    border: 5px solid $favorite-city-color;
+    border-radius: 5px;
+    background-color: $favorite-city-color;
+    margin-bottom: 10px;
+    padding: 10px;
+    cursor: pointer;
+  }
+}
