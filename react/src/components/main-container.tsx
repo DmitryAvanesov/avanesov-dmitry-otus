@@ -1,6 +1,7 @@
-import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import React, { useState, Dispatch, SetStateAction, useEffect } from 'react';
 import { SearchContainer } from './search-container';
 import { FavoriteContainer } from './favorite-container';
+import { Info } from './info';
 
 interface ICityDict {
   [key: string]: ICityData;
@@ -15,6 +16,7 @@ export interface ICityData {
 
 export function MainContainer(): JSX.Element {
   const [favorites, setFavorites]: [Array<string>, Dispatch<SetStateAction<Array<string>>>] = useState(new Array<string>());
+  const [shown, setShown]: [string, Dispatch<SetStateAction<string>>] = useState('');
 
   const data: ICityDict = {
     'moscow': {
@@ -49,10 +51,15 @@ export function MainContainer(): JSX.Element {
     setFavorites(newFavorites);
   };
 
+  const handleChangeSelected = (city: string) => {
+    setShown(city);
+  };
+
   return (
     <div>
       <SearchContainer cities={Object.keys(data)} callbackAddToFavorite={handleAddToFavorite} />
-      <FavoriteContainer cities={favorites} />
+      <FavoriteContainer cities={favorites} callbackChangeSelected={handleChangeSelected} />
+      <Info name={shown} data={data[shown]} />
     </div>
   );
 }

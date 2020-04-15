@@ -1,6 +1,7 @@
-import React, { useState, Dispatch, SetStateAction, ChangeEvent, MouseEvent } from 'react';
+import React, { useState, Dispatch, SetStateAction, ChangeEvent } from 'react';
 import { SearchInput } from './seacrh-input';
 import { SearchButton } from './search-button';
+import { SearchError } from './search-error';
 
 interface IProps {
   cities: Array<string>,
@@ -8,30 +9,29 @@ interface IProps {
 }
 
 export function SearchContainer(props: IProps): JSX.Element {
-  const [selected, setSelected]: [Array<string>, Dispatch<SetStateAction<Array<string>>>] = useState(new Array<string>());
+  const [added, setAdded]: [Array<string>, Dispatch<SetStateAction<Array<string>>>] = useState(new Array<string>());
   const [query, setQuery]: [string, Dispatch<SetStateAction<string>>] = useState('');
+  const [errorMessage, setErrorMessage]: [string, Dispatch<SetStateAction<string>>] = useState('');
 
   const handleSearchInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setQuery(event.target.value);
   };
 
-  const handleSearchButtonClick = (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>): void => {
-    console.log(selected, query);
-
+  const handleSearchButtonClick = (): void => {
     if (props.cities.includes(query)) {
-      if (selected.includes(query)) {
-        alert('This city is already in favorites list');
+      if (added.includes(query)) {
+        setErrorMessage('This city is already in favorites list');
       }
       else {
-        const newSelected = [...selected];
+        const newSelected = [...added];
         newSelected.push(query);
-        setSelected(newSelected);
+        setAdded(newSelected);
 
         props.callbackAddToFavorite(query);
       }
     }
     else {
-      alert('Error: city not found');
+      setErrorMessage('Error: city not found');
     }
   };
 
@@ -39,6 +39,7 @@ export function SearchContainer(props: IProps): JSX.Element {
     <div>
       <SearchInput callbackSearchInputChange={handleSearchInputChange} />
       <SearchButton callbackSearchButtonClick={handleSearchButtonClick} />
+      <SearchError message={errorMessage} />
     </div>
   );
 }

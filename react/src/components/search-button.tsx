@@ -1,11 +1,11 @@
-import React, { MouseEvent } from 'react';
+import React, { } from 'react';
 
 interface IProps {
-  callbackSearchButtonClick: (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void
+  callbackSearchButtonClick: () => void
 }
 
 export function SearchButton(props: IProps): JSX.Element {
   return (
-    <button className="search-button" onClick={e => { props.callbackSearchButtonClick(e) }}>Search</button>
+    <button className="search-button" onClick={props.callbackSearchButtonClick}>Search</button>
   );
 }
