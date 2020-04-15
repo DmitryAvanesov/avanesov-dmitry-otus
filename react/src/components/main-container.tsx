@@ -1,4 +1,4 @@
-import React, { useState, Dispatch, SetStateAction, useEffect } from 'react';
+import React, { useState, Dispatch, SetStateAction } from 'react';
 import { SearchContainer } from './search-container';
 import { FavoriteContainer } from './favorite-container';
 import { Info } from './info';

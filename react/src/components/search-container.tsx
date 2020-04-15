@@ -26,6 +26,7 @@ export function SearchContainer(props: IProps): JSX.Element {
         const newSelected = [...added];
         newSelected.push(query);
         setAdded(newSelected);
+        setErrorMessage('');
 
         props.callbackAddToFavorite(query);
       }
@@ -36,7 +37,7 @@ export function SearchContainer(props: IProps): JSX.Element {
   };
 
   return (
-    <div>
+    <div className="search-container">
       <SearchInput callbackSearchInputChange={handleSearchInputChange} />
       <SearchButton callbackSearchButtonClick={handleSearchButtonClick} />
       <SearchError message={errorMessage} />
