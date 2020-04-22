@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Show documents</title>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <% for (let i = 0; i < data.length; i++) { %>
+  <div><%=data[i].title %></div>
+  <br />
+  <div><%=data[i].link %></div>
+  <br />
+  <div><%=data[i].pubDate %></div>
+  <br />
+  <div><%=data[i].creator %></div>
+  <br />
+  <div><%=data[i].content %></div>
+  <br />
+  <div><%=data[i].contentSnippet %></div>
+  <br />
+  <% for (let j = 0; j < data[i].categories.length; j++) { %>
+  <div><%=data[i].categories[j] %></div>
+  <% } %>
+  <br />
+  <div><%=data[i].isoDate %></div>
+  <br />
+  <br />
+  <br />
+  <% } %>
+
+  <a href="../">Back</a>
+</body>
+
+</html>
