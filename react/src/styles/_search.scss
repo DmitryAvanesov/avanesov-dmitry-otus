@@ -1,0 +1,30 @@
+$search-button-color: rgb(171, 247, 171);
+
+.search-container {
+  background-color: rgb(238, 238, 238);
+  height: 75px;
+  padding-left: 10px;
+  padding-top: 10px;
+
+  .search-input {
+    width: 250px;
+    height: 40px;
+    margin-right: 10px;
+    padding: 5px;
+  }
+
+  .search-button {
+    height: 40px;
+    background-color: $search-button-color;
+    padding: 5px;
+    line-height: 5px;
+    border: 5px solid $search-button-color; 
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  .search-error {
+    color: red;
+    font-size: 14px;
+  }
+}
