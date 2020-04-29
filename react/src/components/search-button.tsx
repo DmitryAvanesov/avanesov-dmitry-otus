@@ -1,11 +1,11 @@
 import React, { } from 'react';
+import { useDispatch } from 'react-redux';
+import { clickSearchButton } from '../redux/actions';
 
-interface IProps {
-  callbackSearchButtonClick: () => void
-}
+export const SearchButton = () => {
+  const dispatch = useDispatch();
 
-export function SearchButton(props: IProps): JSX.Element {
   return (
-    <button className="search-button" onClick={props.callbackSearchButtonClick}>Search</button>
+    <button className="search-button" onClick={() => dispatch(clickSearchButton())}>Search</button>
   );
 }

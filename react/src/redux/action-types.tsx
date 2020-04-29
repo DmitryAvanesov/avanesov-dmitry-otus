@@ -2,11 +2,15 @@ export const CHANGE_SEARCH_INPUT = 'CHANGE_INPUT';
 export const CLICK_SEARCH_BUTTON = 'CLICK_SEARCH_BUTTON';
 export const CLICK_FAVORITE_CITY = 'CLICK_FAVORITE_CITY';
 
-interface IChangeStateInputAction {
+interface IChangeSearchInputAction {
   type: typeof CHANGE_SEARCH_INPUT,
   payload: {
-    content: string
+    newQuery: string
   }
 }
 
-export type IAction = IChangeStateInputAction;
+interface IClickSearchButtonAction {
+  type: typeof CLICK_SEARCH_BUTTON
+}
+
+export type IAction = IChangeSearchInputAction | IClickSearchButtonAction;

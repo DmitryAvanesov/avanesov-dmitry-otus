@@ -1,11 +1,10 @@
-import React, { } from 'react';
+import React, { useState } from 'react';
+import { useSelector, RootStateOrAny } from 'react-redux';
 
-interface IProps {
-  message: string
-}
+export const SearchError = () => {
+  let errorMessage = useSelector((state: any) => state.errorMessage);
 
-export function SearchError(props: IProps): JSX.Element {
   return (
-    <div className="search-error">{props.message}</div>
+    <div className="search-error">{errorMessage}</div>
   );
 }
