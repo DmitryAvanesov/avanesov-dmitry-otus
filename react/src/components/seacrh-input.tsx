@@ -1,11 +1,11 @@
 import React, { ChangeEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeSearchInput } from '../redux/actions';
 
-interface IProps {
-  callbackSearchInputChange: (event: ChangeEvent<HTMLInputElement>) => void
-}
+export const SearchInput = () => {
+  const dispatch = useDispatch();
 
-export function SearchInput(props: IProps): JSX.Element {
   return (
-    <input className="search-input" onChange={e => { props.callbackSearchInputChange(e) }}></input>
+    <input className="search-input" onChange={e => { dispatch(changeSearchInput(e.target.value)) }}></input>
   );
 }

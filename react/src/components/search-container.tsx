@@ -38,7 +38,7 @@ export function SearchContainer(props: IProps): JSX.Element {
 
   return (
     <div className="search-container">
-      <SearchInput callbackSearchInputChange={handleSearchInputChange} />
+      <SearchInput />
       <SearchButton callbackSearchButtonClick={handleSearchButtonClick} />
       <SearchError message={errorMessage} />
     </div>
