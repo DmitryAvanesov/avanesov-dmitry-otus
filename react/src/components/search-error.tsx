@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useSelector, RootStateOrAny } from 'react-redux';
+import React, { } from 'react';
+import { useSelector } from 'react-redux';
 import { IRootState } from '../redux/store';
 
 export const SearchError = () => {

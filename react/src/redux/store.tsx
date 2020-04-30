@@ -12,6 +12,9 @@ export interface IRootState {
     added: Array<string>,
     query: string,
     errorMessage: string
+  },
+  favorite: {
+    selected: string
   }
 }
 

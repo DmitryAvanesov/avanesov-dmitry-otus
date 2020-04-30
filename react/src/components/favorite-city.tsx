@@ -1,12 +1,16 @@
 import React, { } from 'react';
+import { useSelector } from 'react-redux';
+import { IRootState } from '../redux/store';
 
 interface IProps {
-  name: string,
-  callbackFavoriteCityClick: (city: string) => void
+  key: number,
+  index: number
 }
 
-export function FavoriteCity(props: IProps): JSX.Element {
+export const FavoriteCity = ({ index }: IProps) => {
+  const name = useSelector((state: IRootState) => state.search.added[index]);
+
   return (
-    <div className="favorite-city" onClick={() => { props.callbackFavoriteCityClick(props.name) }}>{props.name}</div>
+    <div className="favorite-city" onClick={() => { }}>{name}</div>
   );
 }

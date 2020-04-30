@@ -59,7 +59,7 @@ export function MainContainer(): JSX.Element {
     <div className='main-container'>
       <SearchContainer cities={Object.keys(data)} callbackAddToFavorite={handleAddToFavorite} />
       <Info name={shown} data={data[shown]} />
-      <FavoriteContainer cities={favorites} callbackChangeSelected={handleChangeSelected} />
+      <FavoriteContainer />
     </div>
   );
 }

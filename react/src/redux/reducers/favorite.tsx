@@ -1,0 +1,1 @@
+import { CLICK_FAVORITE_CITY, IAction } from '../action-types';
