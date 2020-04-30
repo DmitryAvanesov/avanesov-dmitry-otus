@@ -10,3 +10,10 @@ export const changeSearchInput = (newQuery: string): IAction => ({
 export const clickSearchButton = (): IAction => ({
   type: CLICK_SEARCH_BUTTON
 });
+
+export const clickFavoriteCity = (newSelected: string): IAction => ({
+  type: CLICK_FAVORITE_CITY,
+  payload: {
+    newSelected
+  }
+});

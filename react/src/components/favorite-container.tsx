@@ -1,10 +1,15 @@
-import React, { useState, Dispatch, SetStateAction } from 'react';
+import React, { } from 'react';
 import { FavoriteCity } from './favorite-city';
 import { useSelector } from 'react-redux';
-import { IRootState } from '../redux/store';
+
+interface IState {
+  search: {
+    added: Array<string>
+  }
+}
 
 export const FavoriteContainer = () => {
-  const cities = useSelector((state: IRootState) => state.search.added);
+  const cities = useSelector((state: IState) => state.search.added);
 
   return (
     <div className="favorite-container">

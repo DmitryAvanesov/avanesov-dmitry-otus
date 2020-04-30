@@ -13,4 +13,11 @@ interface IClickSearchButtonAction {
   type: typeof CLICK_SEARCH_BUTTON
 }
 
-export type IAction = IChangeSearchInputAction | IClickSearchButtonAction;
+interface IClickFavoriteCityAction {
+  type: typeof CLICK_FAVORITE_CITY,
+  payload: {
+    newSelected: string
+  }
+}
+
+export type IAction = IChangeSearchInputAction | IClickSearchButtonAction | IClickFavoriteCityAction;
