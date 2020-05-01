@@ -12,7 +12,8 @@ module.exports = {
     port: 3000,
     watchContentBase: true,
     progress: true,
-    compress: true
+    compress: true,
+    historyApiFallback: true
   },
   devtool: "source-map",
   resolve: {

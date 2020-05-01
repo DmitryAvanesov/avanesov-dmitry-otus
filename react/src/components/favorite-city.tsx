@@ -1,6 +1,7 @@
 import React, { } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { clickFavoriteCity } from '../redux/actions'
+import { Link } from 'react-router-dom';
 
 interface IRootState {
   search: {
@@ -18,6 +19,8 @@ export const FavoriteCity = ({ index }: IProps) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="favorite-city" onClick={() => dispatch(clickFavoriteCity(name))}>{name}</div>
+    <Link to={`/${name}`}>
+        <div className="favorite-city" onClick={() => dispatch(clickFavoriteCity(name))}>{name}</div>
+    </Link>
   );
 }
