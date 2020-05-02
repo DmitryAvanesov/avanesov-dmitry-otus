@@ -9,7 +9,7 @@ import './styles/index.scss';
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <Route path={`/${store.getState().favorite.selected}`} component={MainContainer} />
+      <Route path='/' component={MainContainer} />
     </Router>
   </Provider>,
   document.querySelector('#root')
