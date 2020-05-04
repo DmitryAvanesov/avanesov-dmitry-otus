@@ -9,7 +9,7 @@ import './styles/index.scss';
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <Route path='/' component={MainContainer} />
+      <Route path='/:name?' component={MainContainer} />
     </Router>
   </Provider>,
   document.querySelector('#root')
