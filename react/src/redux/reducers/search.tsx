@@ -1,16 +1,18 @@
-import { CHANGE_SEARCH_INPUT, CLICK_SEARCH_BUTTON, IAction } from '../action-types';
-import { data } from '../../constants';
+import { IAction, CHANGE_SEARCH_INPUT, CLICK_SEARCH_BUTTON, UPDATE_DATA } from '../action-types';
+import { IData } from '../../api';
 
 interface IState {
   added: Array<string>,
   query: string,
-  errorMessage: string
+  errorMessage: string,
+  data: IData | undefined
 }
 
 const initialState: IState = {
   added: new Array<string>(),
   query: '',
-  errorMessage: ''
+  errorMessage: '',
+  data: undefined
 };
 
 const searchReducer = (state: IState = initialState, action: IAction) => {
@@ -24,26 +26,27 @@ const searchReducer = (state: IState = initialState, action: IAction) => {
       };
     }
     case CLICK_SEARCH_BUTTON: {
-      if (Object.keys(data).includes(state.query)) {
-        if (state.added.includes(state.query)) {
-          return {
-            ...state,
-            errorMessage: 'Error: this city is already in favorites list'
-          };
-        }
-
+      if (state.added.includes(state.query)) {
         return {
           ...state,
-          added: [...state.added, state.query],
-          query: '',
-          errorMessage: ''
+          errorMessage: 'Error: this city is already in favorites list'
         };
       }
 
       return {
         ...state,
-        errorMessage: 'Error: city not found'
+        added: [...state.added, state.query],
+        query: '',
+        errorMessage: ''
       };
+    }
+    case UPDATE_DATA: {
+      const { newData } = action.payload;
+
+      return {
+        ...state,
+        data: newData
+      }
     }
     default: {
       return state;

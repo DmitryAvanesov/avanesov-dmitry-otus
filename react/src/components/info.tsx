@@ -1,16 +1,34 @@
 import React, { } from 'react';
-import { useSelector } from 'react-redux';
-import { data } from '../constants';
-import { Switch, Route, useLocation, useParams } from 'react-router-dom';
+import { Switch, Route, useParams } from 'react-router-dom';
+import { IData, fetchApiCall } from '../api';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateData } from '../redux/actions';
 
 interface IState {
-  favorite: {
-    selected: string
+  search: {
+    data: IData
   }
 }
 
 export const Info = () => {
+  const data = useSelector((state: IState) => state.search.data);
+  const dispatch = useDispatch();
   const { name } = useParams();
+
+  const fetchPosts = () => {
+    return async () => {
+      const res = await fetchApiCall(name);
+
+      if (!res) {
+        dispatch(updateData(undefined));
+      }
+      else if (!data || res.city.name != data.city.name) {
+        dispatch(updateData(res));
+      }
+    };
+  }
+
+  fetchPosts()();
 
   return (
     <Switch>
@@ -21,8 +39,8 @@ export const Info = () => {
       </Route>
       <Route path={`/${name}`}>
         <div className="info">
-          <div className="info-name">{name}</div>
-          {data[name] ? Object.entries(data[name]).map(([objKey, objVal]: [string, string], index: number) => <div key={index} className="info-item"><span className="info-key">{objKey}</span> <span className="info-val">{objVal}</span></div>) : <div>Error: city not found</div>}
+          {data ? <div className="info-name">{data.city.name}</div> : <div>{name}</div>}
+          {data ? <div>{data.list[0].weather[0].description}</div> : <div>No data found</div>}
         </div>
       </Route>
     </Switch>
