@@ -7,8 +7,8 @@ export const MainContainer = () => {
   return (
     <div className='main-container'>
       <SearchContainer />
-      <Info />
       <FavoriteContainer />
+      <Info />
     </div>
   );
 }

@@ -17,7 +17,7 @@ export const Info = () => {
 
   const fetchPosts = () => {
     return async () => {
-      const res = await fetchApiCall(name);
+      const res = await fetchApiCall(name).catch(err => console.log(err));
 
       if (!res) {
         dispatch(updateData(undefined));
@@ -38,10 +38,39 @@ export const Info = () => {
         </div>
       </Route>
       <Route path={`/${name}`}>
-        <div className="info">
-          {data ? <div className="info-name">{data.city.name}</div> : <div>{name}</div>}
-          {data ? <div>{data.list[0].weather[0].description}</div> : <div>No data found</div>}
-        </div>
+        {data ? <div className="info-name">{data.city.name}</div> : <div>{name}</div>}
+        {data ? data.list.map((item, index) =>
+          <div key={index} className="info-block">
+            <div className='info-item'>
+              <span className='info-key'>Date</span>
+              <span>{item.dt_txt}</span>
+            </div>
+            <div className='info-item'>
+              <span className='info-key'>Temperature</span>
+              <span>{item.main.temp}°C</span>
+              <span>(feels like {item.main.feels_like}°C)</span>
+            </div>
+            <div className='info-item'>
+              <span className='info-key'>Humidity</span>
+              <span>{item.main.humidity}%</span>
+            </div>
+            <div className='info-item'>
+              <span className='info-key'>Pressure</span>
+              <span>{item.main.pressure} hPa</span>
+            </div>
+            <div className='info-item'>
+              <span className='info-key'>Wind speed</span>
+              <span>{item.wind.speed} meter/sec</span>
+            </div>
+            <div className='info-item'>
+              <span className='info-key'>Cloudiness</span>
+              <span>{item.clouds.all}%</span>
+            </div>
+            <div className='info-item'>
+              <span className='info-key'>Weather</span>
+              <span>{item.weather[0].description}</span>
+            </div>
+          </div>) : <div>No data found</div>}
       </Route>
     </Switch>
   );
