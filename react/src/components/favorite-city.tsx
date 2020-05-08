@@ -1,12 +1,25 @@
 import React, { } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-interface IProps {
-  name: string,
-  callbackFavoriteCityClick: (city: string) => void
+interface IRootState {
+  search: {
+    added: Array<string>
+  }
 }
 
-export function FavoriteCity(props: IProps): JSX.Element {
+interface IProps {
+  key: number,
+  index: number
+}
+
+export const FavoriteCity = ({ index }: IProps) => {
+  const name = useSelector((state: IRootState) => state.search.added[index]);
+  const dispatch = useDispatch();
+
   return (
-    <div className="favorite-city" onClick={() => { props.callbackFavoriteCityClick(props.name) }}>{props.name}</div>
+    <Link to={`/${name}`}>
+      <div className="favorite-city">{name}</div>
+    </Link>
   );
 }

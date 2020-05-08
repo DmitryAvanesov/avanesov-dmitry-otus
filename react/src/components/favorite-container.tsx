@@ -1,24 +1,19 @@
-import React, { useState, Dispatch, SetStateAction } from 'react';
+import React, { } from 'react';
 import { FavoriteCity } from './favorite-city';
+import { useSelector } from 'react-redux';
 
-interface IProps {
-  cities: Array<string>,
-  callbackChangeSelected: (city: string) => void
+interface IState {
+  search: {
+    added: Array<string>
+  }
 }
 
-export function FavoriteContainer(props: IProps): JSX.Element {
-  const [selected, setSelected]: [string, Dispatch<SetStateAction<string>>] = useState('');
-
-  const handleFavoriteCityClick = (city: string) => {
-    if (city != selected) {
-      setSelected(city);
-      props.callbackChangeSelected(city);
-    }
-  };
+export const FavoriteContainer = () => {
+  const cities = useSelector((state: IState) => state.search.added);
 
   return (
     <div className="favorite-container">
-      {props.cities.map((city: string, index: number) => <FavoriteCity key={index} name={city} callbackFavoriteCityClick={handleFavoriteCityClick} />)}
+      {cities.map((city: string, index: number) => <FavoriteCity key={index} index={index} />)}
     </div>
   );
 }

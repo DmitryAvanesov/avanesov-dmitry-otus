@@ -1,16 +1,77 @@
 import React, { } from 'react';
-import { ICityData } from './main-container'
+import { Switch, Route, useParams } from 'react-router-dom';
+import { IData, fetchApiCall } from '../api';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateData } from '../redux/actions';
 
-interface IProps {
-  name: string,
-  data: ICityData
+interface IState {
+  search: {
+    data: IData
+  }
 }
 
-export function Info(props: IProps): JSX.Element {
+export const Info = () => {
+  const data = useSelector((state: IState) => state.search.data);
+  const dispatch = useDispatch();
+  const { name } = useParams();
+
+  const fetchPosts = () => {
+    return async () => {
+      const res = await fetchApiCall(name).catch(err => console.log(err));
+
+      if (!res) {
+        dispatch(updateData(undefined));
+      }
+      else if (!data || res.city.name != data.city.name) {
+        dispatch(updateData(res));
+      }
+    };
+  }
+
+  fetchPosts()();
+
   return (
-    <div className="info">
-      <div className="info-name">{props.name}</div>
-      {props.data ? Object.entries(props.data).map(([objKey, objVal]: [string, string], index: number) => <div key={index} className="info-item"><span className="info-key">{objKey}</span> <span className="info-val">{objVal}</span></div>) : <div>Data will be displayed here</div>}
-    </div>
+    <Switch>
+      <Route exact path='/'>
+        <div className="info">
+          {<div>Data will be displayed here</div>}
+        </div>
+      </Route>
+      <Route path={`/${name}`}>
+        {data ? <div className="info-name">{data.city.name}</div> : <div>{name}</div>}
+        {data ? data.list.map((item, index) =>
+          <div key={index} className="info-block">
+            <div className='info-item'>
+              <span className='info-key'>Date</span>
+              <span>{item.dt_txt}</span>
+            </div>
+            <div className='info-item'>
+              <span className='info-key'>Temperature</span>
+              <span>{item.main.temp}°C</span>
+              <span>(feels like {item.main.feels_like}°C)</span>
+            </div>
+            <div className='info-item'>
+              <span className='info-key'>Humidity</span>
+              <span>{item.main.humidity}%</span>
+            </div>
+            <div className='info-item'>
+              <span className='info-key'>Pressure</span>
+              <span>{item.main.pressure} hPa</span>
+            </div>
+            <div className='info-item'>
+              <span className='info-key'>Wind speed</span>
+              <span>{item.wind.speed} meter/sec</span>
+            </div>
+            <div className='info-item'>
+              <span className='info-key'>Cloudiness</span>
+              <span>{item.clouds.all}%</span>
+            </div>
+            <div className='info-item'>
+              <span className='info-key'>Weather</span>
+              <span>{item.weather[0].description}</span>
+            </div>
+          </div>) : <div>No data found</div>}
+      </Route>
+    </Switch>
   );
 }
