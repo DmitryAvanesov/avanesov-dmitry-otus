@@ -1,7 +1,7 @@
 import React, { } from 'react';
 import { Switch, Route, useParams } from 'react-router-dom';
-import { IData, fetchApiCall } from '../api';
-import { useSelector } from 'react-redux';
+import { IData, fetchApiCall, fetchPosts } from '../api';
+import { useSelector, useDispatch } from 'react-redux';
 
 interface IState {
   search: {
@@ -12,6 +12,9 @@ interface IState {
 export const Info = () => {
   const data = useSelector((state: IState) => state.search.data);
   const { name } = useParams();
+  const dispatch = useDispatch();
+
+  dispatch(fetchPosts(name, data));
 
   return (
     <Switch>
