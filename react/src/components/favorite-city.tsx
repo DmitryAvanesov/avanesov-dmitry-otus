@@ -1,5 +1,5 @@
 import React, { } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 interface IRootState {
@@ -15,7 +15,6 @@ interface IProps {
 
 export const FavoriteCity = ({ index }: IProps) => {
   const name = useSelector((state: IRootState) => state.search.added[index]);
-  const dispatch = useDispatch();
 
   return (
     <Link to={`/${name}`}>
