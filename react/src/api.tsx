@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { Dispatch } from 'react';
+import { clickSearchButton, updateData } from './redux/actions';
 
 export interface IData {
   city: {
@@ -38,4 +40,17 @@ export const fetchApiCall = async (name: string): Promise<IData> => {
   });
 
   return json.data;
+}
+
+export const fetchPosts = (name: string, data: IData) => {
+  return async (dispatch: Dispatch<any>) => {
+    const res = await fetchApiCall(name).catch(err => console.log(err));
+
+    if (!res) {
+      dispatch(updateData(undefined));
+    }
+    else if (!data || res.city.name != data.city.name) {
+      dispatch(updateData(res));
+    }
+  };
 }

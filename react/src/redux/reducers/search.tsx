@@ -1,4 +1,4 @@
-import { IAction, CHANGE_SEARCH_INPUT, CLICK_SEARCH_BUTTON, UPDATE_DATA } from '../action-types';
+import { IAction, CHANGE_SEARCH_INPUT, CLICK_SEARCH_BUTTON, UPDATE_DATA, CLICK_FAVORITE_CITY } from '../action-types';
 import { IData } from '../../api';
 
 interface IState {
@@ -30,6 +30,13 @@ const searchReducer = (state: IState = initialState, action: IAction) => {
         return {
           ...state,
           errorMessage: 'Error: this city is already in favorites list'
+        };
+      }
+
+      if (!state.query) {
+        return {
+          ...state,
+          errorMessage: 'Error: the field is empty'
         };
       }
 

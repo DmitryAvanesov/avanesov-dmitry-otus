@@ -1,8 +1,7 @@
 import React, { } from 'react';
 import { Switch, Route, useParams } from 'react-router-dom';
 import { IData, fetchApiCall } from '../api';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateData } from '../redux/actions';
+import { useSelector } from 'react-redux';
 
 interface IState {
   search: {
@@ -12,23 +11,7 @@ interface IState {
 
 export const Info = () => {
   const data = useSelector((state: IState) => state.search.data);
-  const dispatch = useDispatch();
   const { name } = useParams();
-
-  const fetchPosts = () => {
-    return async () => {
-      const res = await fetchApiCall(name).catch(err => console.log(err));
-
-      if (!res) {
-        dispatch(updateData(undefined));
-      }
-      else if (!data || res.city.name != data.city.name) {
-        dispatch(updateData(res));
-      }
-    };
-  }
-
-  fetchPosts()();
 
   return (
     <Switch>
