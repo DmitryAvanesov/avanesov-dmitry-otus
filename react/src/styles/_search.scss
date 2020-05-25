@@ -1,4 +1,4 @@
-$search-button-color: rgb(171, 247, 171);
+$search-button-color: rgb(169, 255, 188);
 
 .search-container {
   background-color: rgb(238, 238, 238);
@@ -22,6 +22,7 @@ $search-button-color: rgb(171, 247, 171);
     border: 5px solid $search-button-color; 
     border-radius: 5px;
     text-align: center;
+    cursor: pointer;
   }
 
   .search-error {
