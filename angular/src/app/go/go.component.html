@@ -1,0 +1,14 @@
+<div ngClass="page-block">
+  <h1 ngClass="page-title">Go</h1>
+
+  <span ngClass="word">{{getWords(dates[0])}}</span>
+  <input ngClass="translation" />
+
+  <button ngClass="check-button">Check</button>
+  <div></div>
+
+  <div ngClass="page-link-block">
+    <span ngClass="page-link" (click)="goToPage('recently-added')">Recently Added</span>
+    <span ngClass="page-link" (click)="goToPage('settings')">Settings</span>
+  </div>
+</div>

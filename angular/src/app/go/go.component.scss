@@ -1,0 +1,18 @@
+@import '../app.component.scss';
+
+.word {
+  margin-right: 15px;
+}
+
+.translation {
+  width: 300px;
+  margin-right: 5px;
+}
+
+.check-button {
+  cursor: pointer;
+  background-color: darkblue;
+  color: white;
+  border: 5px solid darkblue;
+  border-radius: 3%;
+}

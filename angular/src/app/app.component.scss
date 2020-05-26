@@ -3,6 +3,7 @@
 * {
   font-family: 'Raleway', sans-serif;
   font-size: 20px;
+  box-sizing: border-box;
 }
 
 .page-block {
@@ -10,6 +11,21 @@
 
   .page-title {
     font-size: 32px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
+  }
+
+  .page-link-block {
+    margin-top: 100px;
+
+    .page-link {
+      cursor: pointer;
+      color: darkblue;
+      font-weight: bold;
+      margin-right: 25px;
+    }
+
+    .page-link:hover {
+      color: black;
+    }
   }
 }

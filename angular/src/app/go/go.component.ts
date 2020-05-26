@@ -1,16 +1,16 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IData } from '../app.component';
 
 @Component({
-  selector: 'app-recently-added',
-  templateUrl: './recently-added.component.html',
-  styleUrls: ['./recently-added.component.scss']
+  selector: 'app-go',
+  templateUrl: './go.component.html',
+  styleUrls: ['./go.component.scss']
 })
-export class RecentlyAddedComponent implements OnInit {
+export class GoComponent implements OnInit {
 
   @Input() data: IData;
 
-  constructor() {}
+  constructor() { }
 
   get dates() {
     return Object.keys(this.data).reverse();
@@ -21,7 +21,7 @@ export class RecentlyAddedComponent implements OnInit {
   }
 
   @Output() pageChanged = new EventEmitter<string>();
-  
+
   goToPage(page: string) {
     this.pageChanged.emit(page);
   }
