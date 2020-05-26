@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 interface IWords {
   [date: string]: {
@@ -28,11 +28,17 @@ export class RecentlyAddedComponent implements OnInit {
   }
 
   get dates() {
-    return Object.keys(this.data);
+    return Object.keys(this.data).reverse();
   }
 
   getWords(date: string) {
     return Object.keys(this.data[date]);
+  }
+
+  @Output() pageChanged = new EventEmitter<string>();
+  
+  goToPage(page: string) {
+    this.pageChanged.emit(page);
   }
 
   ngOnInit(): void {

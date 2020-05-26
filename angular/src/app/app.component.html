@@ -1,2 +1,3 @@
-<app-recently-added></app-recently-added>
-<!-- <router-outlet></router-outlet> -->
+<router-outlet></router-outlet>
+
+<app-recently-added *ngIf="activePage == 'recently-added'" (pageChanged)="onPageChanged($event)"></app-recently-added>
