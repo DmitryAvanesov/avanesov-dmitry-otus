@@ -1,0 +1,9 @@
+<h1 ngClass="title">Recently Added</h1>
+
+<div *ngFor="let date of dates" ngClass="date">
+  {{date}}
+
+  <div *ngFor="let word of getWords(date)" ngClass="word">
+    {{word}} - {{data[date][word]}}
+  </div>
+</div>
