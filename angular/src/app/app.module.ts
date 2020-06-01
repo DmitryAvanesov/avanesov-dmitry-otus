@@ -7,13 +7,15 @@ import { RecentlyAddedComponent } from './recently-added/recently-added.componen
 import { RouterModule } from '@angular/router';
 import { GoComponent } from './go/go.component';
 import { SettingsComponent } from './settings/settings.component';
+import { AddWordsComponent } from './add-words/add-words.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecentlyAddedComponent,
     GoComponent,
-    SettingsComponent
+    SettingsComponent,
+    AddWordsComponent
   ],
   imports: [
     BrowserModule,
