@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IData } from '../app.component';
+import { StoreWordsService, IData } from '../store-words.service';
 
 @Component({
   selector: 'app-go',
@@ -8,9 +8,13 @@ import { IData } from '../app.component';
 })
 export class GoComponent implements OnInit {
 
-  @Input() data: IData;
+  data: IData;
 
-  constructor() { }
+  constructor(
+    private storeWords: StoreWordsService
+  ) {
+    this.data = this.storeWords.data;
+  }
 
   get dates() {
     return Object.keys(this.data).reverse();
