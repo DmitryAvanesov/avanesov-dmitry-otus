@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AddWordsService } from '../add-words.service';
+import { TranslateWordsService } from '../translate-words.service';
 
 @Component({
   selector: 'app-add-words',
@@ -8,10 +9,17 @@ import { AddWordsService } from '../add-words.service';
 })
 export class AddWordsComponent implements OnInit {
 
-  constructor(private addWords: AddWordsService) { }
+  constructor(
+    private addWords: AddWordsService,
+    private translateWords: TranslateWordsService
+  ) { }
 
-  onAddWords(text: string) {
-    this.addWords.addWords(text);
+  onChangeWords(newText: string) {
+    this.translateWords.text = newText;
+  }
+
+  onAddWords() {
+    this.addWords.addWords();
   }
 
   @Output() pageChanged = new EventEmitter<string>();

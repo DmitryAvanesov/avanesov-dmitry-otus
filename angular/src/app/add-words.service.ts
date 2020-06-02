@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { TranslateWordService } from './translate-word.service';
+import { TranslateWordsService } from './translate-words.service';
 import { StoreWordsService } from './store-words.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,19 +9,14 @@ import { StoreWordsService } from './store-words.service';
 export class AddWordsService {
 
   constructor(
-    private translateWord: TranslateWordService,
+    private translateWords: TranslateWordsService,
     private storeWords: StoreWordsService
   ) { }
 
-  addWords(text: string): void {
-    const words = text.split(' ');
-
-    words.forEach(word => {
-      this.translateWord.translateWord(word);
+  addWords(): void {
+    this.translateWords.translateWords.subscribe((response) => {
+      this.storeWords.storeWords(response);
     });
   }
 
-  ngOnInit(): void { 
-    this.translateWord.translation.subscribe((str) => {console.log(str)});
-  }
 }
