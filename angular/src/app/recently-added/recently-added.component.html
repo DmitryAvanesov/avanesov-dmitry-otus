@@ -1,0 +1,16 @@
+<div ngClass="page-block">
+  <h1 ngClass="page-title">Recently Added</h1>
+
+  <div *ngFor="let date of dates" ngClass="date-block">
+    <p ngClass="date">{{date}}</p>
+
+    <div *ngFor="let word of getWords(date)">
+      {{word}} - {{data[date][word]}}
+    </div>
+  </div>
+
+  <div ngClass="page-link-block">
+    <span ngClass="page-link" (click)="goToPage('go')">Go</span>
+    <span ngClass="page-link" (click)="goToPage('settings')">Settings</span>
+  </div>
+</div>
