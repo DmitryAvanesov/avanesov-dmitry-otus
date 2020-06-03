@@ -1,18 +1,12 @@
 @import '../app.component.scss';
 
+$margin-right-inline: 15px;
+
 .word {
-  margin-right: 15px;
+  margin-right: $margin-right-inline;
 }
 
 .translation {
   width: 300px;
-  margin-right: 5px;
-}
-
-.check-button {
-  cursor: pointer;
-  background-color: darkblue;
-  color: white;
-  border: 5px solid darkblue;
-  border-radius: 3%;
+  margin-right: $margin-right-inline;
 }

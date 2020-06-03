@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { IData } from '../app.component';
+import { StoreWordsService, IData } from '../store-words.service';
 
 @Component({
   selector: 'app-recently-added',
@@ -8,20 +8,24 @@ import { IData } from '../app.component';
 })
 export class RecentlyAddedComponent implements OnInit {
 
-  @Input() data: IData;
+  data: IData;
 
-  constructor() {}
+  constructor(
+    private storeWords: StoreWordsService
+  ) { }
 
   get dates() {
+    this.data = this.storeWords.data;
     return Object.keys(this.data).reverse();
   }
 
   getWords(date: string) {
+    // console.log(this.data);
     return Object.keys(this.data[date]);
   }
 
   @Output() pageChanged = new EventEmitter<string>();
-  
+
   goToPage(page: string) {
     this.pageChanged.emit(page);
   }
