@@ -12,8 +12,8 @@ export interface IResponse {
 })
 export class TranslateWordsService {
 
-  text: string;
-  translateWords: Observable<IResponse>;
+  private text: string;
+  public translateWords: Observable<IResponse>;
 
   constructor() {
     this.translateWords = Observable.create((observer: Observer<IResponse>) => {
@@ -43,6 +43,10 @@ export class TranslateWordsService {
         })
       });
     });
+  }
+
+  setText(newText: string): void {
+    this.text = newText;
   }
 
 }

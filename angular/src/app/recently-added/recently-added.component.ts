@@ -20,7 +20,6 @@ export class RecentlyAddedComponent implements OnInit {
   }
 
   getWords(date: string) {
-    // console.log(this.data);
     return Object.keys(this.data[date]);
   }
 

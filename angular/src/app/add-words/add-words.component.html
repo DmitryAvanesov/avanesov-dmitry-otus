@@ -1,8 +1,10 @@
 <div ngClass="page-block">
   <h1 ngClass="page-title">Add Words</h1>
 
-  <input #textInput ngClass="text" (change)="onChangeWords(textInput.value)" />
-  <button ngClass="submit-button" (click)="onAddWords()">Add</button>
+  <form [formGroup]="model" (ngSubmit)="onAddWords()">
+    <input formControlName="text" type="text" ngClass="text" />
+    <button type="submit" ngClass="submit-button">Add</button>
+  </form>
 
   <div ngClass="page-link-block">
     <span ngClass="page-link" (click)="goToPage('recently-added')">Recently Added</span>
