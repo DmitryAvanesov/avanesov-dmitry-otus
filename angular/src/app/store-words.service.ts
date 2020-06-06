@@ -3,7 +3,10 @@ import { IResponse } from './translate-words.service';
 
 export interface IData {
   [date: string]: {
-    [word: string]: string
+    [word: string]: {
+      ru: string,
+      es: string
+    }
   }
 }
 
@@ -22,9 +25,14 @@ export class StoreWordsService {
     const date = new Date();
     const formattedDate = `${date.getDay()}.${date.getMonth() + 1}.${date.getFullYear()}`;
 
+    console.log(response.translations)
+
     this.data[formattedDate] = {
       ...this.data[formattedDate],
-      [response.word]: response.translation
+      [response.word]: {
+        ru: response.translations.ru,
+        es: response.translations.es
+      }
     };
 
     localStorage.setItem('data', JSON.stringify(this.data));

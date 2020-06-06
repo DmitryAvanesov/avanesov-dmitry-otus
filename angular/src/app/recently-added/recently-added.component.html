@@ -5,7 +5,7 @@
     <p ngClass="date">{{date}}</p>
 
     <div *ngFor="let word of getWords(date)">
-      {{word}} - {{data[date][word]}}
+      {{word}} - {{data[date][word].ru}} , {{data[date][word].es}}
     </div>
   </div>
 
