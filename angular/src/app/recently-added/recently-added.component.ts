@@ -18,6 +18,8 @@ export class RecentlyAddedComponent implements OnInit {
     private changePage: ChangePageService,
     changeSettings: ChangeSettingsService
   ) {
+    this.language = localStorage.getItem('language');
+
     changeSettings.languageChanged.subscribe(
       newLanguage => {
         this.language = newLanguage;
