@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { AddWordsService } from '../add-words.service';
 import { TranslateWordsService } from '../translate-words.service';
 import { strict } from 'assert';
+import { ChangePageService } from '../change-page.service';
 
 @Component({
   selector: 'app-add-words',
@@ -15,7 +16,8 @@ export class AddWordsComponent implements OnInit {
 
   constructor(
     private addWords: AddWordsService,
-    private translateWords: TranslateWordsService
+    private translateWords: TranslateWordsService,
+    private changePage: ChangePageService
   ) {
     this.model = new FormGroup({
       text: new FormControl('')
@@ -26,14 +28,12 @@ export class AddWordsComponent implements OnInit {
     this.addWords.addWords();
   }
 
-  @Output() pageChanged = new EventEmitter<string>();
-
-  goToPage(page: string): void {
-    this.pageChanged.emit(page);
+  goToPage(page: string) {
+    this.changePage.changePage(page);
   }
 
   ngOnInit(): void {
-    this.model.get('text').valueChanges.subscribe(value => this.translateWords.setText(value));
+    this.model.valueChanges.subscribe(value => this.translateWords.setText(value));
   }
 
 }

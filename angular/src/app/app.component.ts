@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ChangePageService } from './change-page.service';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,16 @@ export class AppComponent {
 
   activePage: string;
 
-  constructor() {
+  constructor(
+    private changePage: ChangePageService
+  ) {
     this.activePage = 'recently-added';
+
+    changePage.pageChanged.subscribe(
+      newActivePage => {
+        this.activePage = newActivePage;
+      }
+    );
   }
 
   onPageChanged(newActivePage: string) {

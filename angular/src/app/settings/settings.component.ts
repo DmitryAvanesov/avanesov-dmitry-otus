@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ChangePageService } from '../change-page.service';
 
 @Component({
   selector: 'app-settings',
@@ -7,12 +8,12 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor() { }
-
-  @Output() pageChanged = new EventEmitter<string>();
+  constructor(
+    private changePage: ChangePageService
+  ) { }
   
   goToPage(page: string) {
-    this.pageChanged.emit(page);
+    this.changePage.changePage(page);
   }
 
   ngOnInit(): void { }

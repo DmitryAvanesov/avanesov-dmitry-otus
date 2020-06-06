@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { StoreWordsService, IData } from '../store-words.service';
+import { ChangePageService } from '../change-page.service';
 
 @Component({
   selector: 'app-go',
@@ -11,7 +12,8 @@ export class GoComponent implements OnInit {
   data: IData;
 
   constructor(
-    private storeWords: StoreWordsService
+    private storeWords: StoreWordsService,
+    private changePage: ChangePageService
   ) {
     this.data = this.storeWords.data;
   }
@@ -24,10 +26,8 @@ export class GoComponent implements OnInit {
     return Object.keys(this.data[date]);
   }
 
-  @Output() pageChanged = new EventEmitter<string>();
-
   goToPage(page: string) {
-    this.pageChanged.emit(page);
+    this.changePage.changePage(page);
   }
 
   ngOnInit(): void { }
