@@ -2,7 +2,7 @@
   <h1 ngClass="page-title">Add Words</h1>
 
   <form [formGroup]="model" (ngSubmit)="onAddWords()">
-    <input formControlName="text" type="text" ngClass="text" />
+    <textarea formControlName="text" type="text" ngClass="text"></textarea>
     <button type="submit" ngClass="submit-button">Add</button>
   </form>
 

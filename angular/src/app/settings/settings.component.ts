@@ -39,13 +39,13 @@ export class SettingsComponent implements OnInit {
         localStorage.setItem('numberOfWords', this.numberOfWords.toString());
       }
     );
-   }
-  
+  }
+
   goToPage(page: string) {
     this.changePage.changePage(page);
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.model.get('language').valueChanges.subscribe(value => this.changeSettings.changeLanguage(value));
     this.model.get('numberOfWords').valueChanges.subscribe(value => this.changeSettings.changeNumberOfWords(value));
   }
