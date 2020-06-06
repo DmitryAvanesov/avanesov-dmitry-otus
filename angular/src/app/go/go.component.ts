@@ -30,6 +30,6 @@ export class GoComponent implements OnInit {
     this.changePage.changePage(page);
   }
 
-  ngOnInit(): void { }
+  ngOnInit() { }
 
 }

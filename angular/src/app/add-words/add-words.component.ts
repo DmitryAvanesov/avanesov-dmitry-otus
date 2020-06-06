@@ -24,16 +24,16 @@ export class AddWordsComponent implements OnInit {
     });
   }
 
-  onAddWords(): void {
+  onAddWords() {
     this.addWords.addWords();
     this.changePage.changePage('recently-added');
   }
 
-  goToPage(page: string): void {
+  goToPage(page: string) {
     this.changePage.changePage(page);
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.model.get('text').valueChanges.subscribe(value => this.translateWords.setText(value));
   }
 
