@@ -80,10 +80,6 @@ export class GoComponent implements OnInit {
     }
   }
 
-  goToPage(page: string) {
-    this.changePage.changePage(page);
-  }
-
   ngOnInit() {
     this.model.get('translation').valueChanges.subscribe((value: string) => {
       this.currentTranslation = value.toLowerCase();

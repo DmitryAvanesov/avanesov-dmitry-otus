@@ -16,8 +16,10 @@
   </div>
 
   <div ngClass="page-link-block">
-    <span ngClass="page-link" (click)="goToPage('recently-added')">Recently Added</span>
-    <span ngClass="page-link" (click)="goToPage('add-words')">Add Words</span>
-    <span ngClass="page-link" (click)="goToPage('settings')">Settings</span>
+    <span [routerLink]="['/recently-added']" ngClass="page-link">Recently Added</span>
+    <span [routerLink]="['/add-words']" ngClass="page-link">Add Words</span>
+    <span [routerLink]="['/settings']" ngClass="page-link">Settings</span>
   </div>
 </div>
+
+<router-outlet></router-outlet>

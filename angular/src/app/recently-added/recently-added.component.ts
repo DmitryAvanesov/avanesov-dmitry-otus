@@ -36,10 +36,6 @@ export class RecentlyAddedComponent implements OnInit {
     return Object.keys(this.data[date]);
   }
 
-  goToPage(page: string) {
-    this.changePage.changePage(page);
-  }
-
   ngOnInit() { }
 
 }
