@@ -22,16 +22,13 @@ export class StoreWordsService {
   }
 
   storeWords(response: IResponse) {
-    const date = new Date();
-    const formattedDate = `${date.getDay()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+    const date = (new Date()).toLocaleString().split(',')[0];
 
-    console.log(response.translations)
-
-    this.data[formattedDate] = {
-      ...this.data[formattedDate],
-      [response.word]: {
-        ru: response.translations.ru,
-        es: response.translations.es
+    this.data[date] = {
+      ...this.data[date],
+      [response.word.toLowerCase()]: {
+        ru: response.translations.ru.toLowerCase(),
+        es: response.translations.es.toLowerCase()
       }
     };
 
