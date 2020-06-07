@@ -15,7 +15,6 @@ export class RecentlyAddedComponent implements OnInit {
 
   constructor(
     private storeWords: StoreWordsService,
-    private changePage: ChangePageService,
     changeSettings: ChangeSettingsService
   ) {
     this.language = localStorage.getItem('language');

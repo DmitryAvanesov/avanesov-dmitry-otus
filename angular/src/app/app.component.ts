@@ -10,22 +10,6 @@ import { ChangeSettingsService } from './change-settings.service';
 export class AppComponent {
   title = 'angular';
 
-  activePage: string;
-
   constructor(
-    changePage: ChangePageService,
-    changeSettings: ChangeSettingsService
-  ) {
-    this.activePage = 'recently-added';
-
-    changePage.pageChanged.subscribe(
-      newActivePage => {
-        this.activePage = newActivePage;
-      }
-    );
-  }
-
-  onPageChanged(newActivePage: string) {
-    this.activePage = newActivePage;
-  }
+  ) { }
 }

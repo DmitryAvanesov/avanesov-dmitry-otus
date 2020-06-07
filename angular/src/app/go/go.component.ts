@@ -23,15 +23,14 @@ export class GoComponent implements OnInit {
 
   constructor(
     private storeWords: StoreWordsService,
-    private changePage: ChangePageService,
     changeSettings: ChangeSettingsService
   ) {
     this.model = new FormGroup({
       translation: new FormControl('')
     });
 
-    this.language = localStorage.getItem('language');
-    this.numberOfWords = parseInt(localStorage.getItem('numberOfWords'));
+    this.language = localStorage.getItem('language') || 'ru';
+    this.numberOfWords = parseInt(localStorage.getItem('numberOfWords')) || 10;
     this.data = this.storeWords.data;
     this.currentNumber = 0;
     this.answers = new Array<boolean>(this.numberOfWords);

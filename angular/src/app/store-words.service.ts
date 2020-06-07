@@ -18,7 +18,14 @@ export class StoreWordsService {
   data: IData;
 
   constructor() {
-    this.data = JSON.parse(localStorage.getItem('data')) || {};
+    this.data = JSON.parse(localStorage.getItem('data')) || {
+      '01.01.2000': {
+        'friend': {
+          ru: 'друг',
+          es: 'amigo'
+        }
+      }
+    };
   }
 
   storeWords(response: IResponse) {

@@ -15,7 +15,6 @@ export class SettingsComponent implements OnInit {
   numberOfWords: number;
 
   constructor(
-    private changePage: ChangePageService,
     private changeSettings: ChangeSettingsService
   ) {
     this.language = localStorage.getItem('language');
