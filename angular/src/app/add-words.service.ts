@@ -13,7 +13,7 @@ export class AddWordsService {
     private storeWords: StoreWordsService
   ) { }
 
-  addWords(): void {
+  addWords() {
     this.translateWords.translateWords.subscribe((response) => {
       this.storeWords.storeWords(response);
     });

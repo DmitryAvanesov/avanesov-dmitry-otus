@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StoreWordsService, IData } from '../store-words.service';
-import { ChangePageService } from '../change-page.service';
 import { ChangeSettingsService } from '../change-settings.service';
 import { FormGroup, FormControl } from '@angular/forms';
 

@@ -1,9 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AddWordsService } from '../add-words.service';
 import { TranslateWordsService } from '../translate-words.service';
-import { strict } from 'assert';
-import { ChangePageService } from '../change-page.service';
 
 @Component({
   selector: 'app-add-words',
