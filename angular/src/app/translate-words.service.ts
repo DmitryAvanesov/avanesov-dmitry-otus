@@ -49,16 +49,16 @@ export class TranslateWordsService {
           translations[language] = translation.data[0].translations[0].text;
         };
 
-      observer.next({
-        word: word,
-        translations: translations
-      })
+        observer.next({
+          word: word,
+          translations: translations
+        })
+      });
     });
-  });
-}
+  }
 
-setText(newText: string): void {
-  this.text = newText;
-}
+  setText(newText: string): void {
+    this.text = newText;
+  }
 
 }

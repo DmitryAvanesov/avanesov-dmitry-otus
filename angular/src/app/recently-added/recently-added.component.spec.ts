@@ -22,4 +22,12 @@ describe('RecentlyAddedComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should return correct dates', () => {
+    expect(component.dates[Math.floor(Math.random() * component.dates.length)].toString().split('.')).toMatch('(\\d{2}.){2}\\d{4}');
+  });
+
+  it('should return words by date', () => {
+    expect(component.getWords(Object.keys(component.data)[Math.floor(Math.random() * Object.keys(component.data).length)])).toMatch('\\w+');
+  });
 });

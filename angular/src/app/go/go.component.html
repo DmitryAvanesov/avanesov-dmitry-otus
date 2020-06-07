@@ -2,7 +2,7 @@
   <h1 ngClass="page-title">Go</h1>
 
   <form [formGroup]="model" (submit)="checkTranslation()" ngClass="go-form">
-    <span ngClass="word">{{word}}</span>
+    <span ngClass="word">{{currentWord}}</span>
     <input formControlName="translation" [value]="currentTranslation" ngClass="translation" />   
     <button type="submit" [disabled]="currentNumber == numberOfWords" ngClass="submit-button">Check</button>
   </form>

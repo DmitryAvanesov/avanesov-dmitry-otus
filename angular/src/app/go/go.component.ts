@@ -57,10 +57,6 @@ export class GoComponent implements OnInit {
     this.currentWord = Object.keys(this.data[this.currentDate])[Math.floor(Math.random() * Object.keys(this.data[this.currentDate]).length)];
   }
 
-  get word() {
-    return this.currentWord;
-  }
-
   checkTranslation() {
     if (this.data[this.currentDate][this.currentWord][this.language] == this.currentTranslation) {
       this.answers[this.currentNumber++] = true;

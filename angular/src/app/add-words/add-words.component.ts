@@ -15,9 +15,8 @@ export class AddWordsComponent implements OnInit {
   model: FormGroup;
 
   constructor(
-    private addWords: AddWordsService,
-    private translateWords: TranslateWordsService,
-    private changePage: ChangePageService
+    public addWords: AddWordsService,
+    private translateWords: TranslateWordsService
   ) {
     this.model = new FormGroup({
       text: new FormControl('')
@@ -26,7 +25,6 @@ export class AddWordsComponent implements OnInit {
 
   onAddWords() {
     this.addWords.addWords();
-    this.changePage.changePage('recently-added');
   }
 
   ngOnInit() {
