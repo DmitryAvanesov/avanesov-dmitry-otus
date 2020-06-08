@@ -14,7 +14,7 @@ export class AddWordsComponent implements OnInit {
   model: FormGroup;
 
   constructor(
-    public addWords: AddWordsService,
+    private addWords: AddWordsService,
     private translateWords: TranslateWordsService,
     private router: Router
   ) {
