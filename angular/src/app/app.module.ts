@@ -20,7 +20,7 @@ import { RouterTestingModule } from '@angular/router/testing';
     AddWordsComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     RouterModule,
     FormsModule,
