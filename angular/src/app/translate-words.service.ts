@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios, { AxiosPromise, AxiosResponse } from 'axios';
 import { BehaviorSubject, Observable, from, Observer } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 export interface IResponse {
   word: string,
@@ -29,11 +30,11 @@ export class TranslateWordsService {
         for (const language of Object.keys(translations)) {
           const translation = await axios({
             "method": "POST",
-            "url": "https://microsoft-translator-text.p.rapidapi.com/translate",
+            "url": environment.url,
             "headers": {
               "content-type": "application/json",
-              "x-rapidapi-host": "microsoft-translator-text.p.rapidapi.com",
-              "x-rapidapi-key": "a59547b963mshe74fe6a27de2227p140951jsn76298672df34",
+              "x-rapidapi-host": environment.xRapidapiHost,
+              "x-rapidapi-key": environment.xRapidapiKey,
               "accept": "application/json",
               "useQueryString": true
             }, "params": {

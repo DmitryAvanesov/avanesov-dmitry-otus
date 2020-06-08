@@ -57,7 +57,7 @@ export class GoComponent implements OnInit {
   }
 
   checkTranslation() {
-    if (this.data[this.currentDate][this.currentWord][this.language] == this.currentTranslation) {
+    if (this.data[this.currentDate][this.currentWord][this.language] === this.currentTranslation) {
       this.answers[this.currentNumber++] = true;
     }
     else {
