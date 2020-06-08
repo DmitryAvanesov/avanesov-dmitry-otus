@@ -1,27 +1,21 @@
 <div ngClass="page-block">
   <h1 ngClass="page-title">Settings</h1>
 
-  <p ngClass="select-name">Language (from)</p>
-  <select ngClass="select-dropdown">
-    <option>Russian</option>
-    <option selected>English</option>
-    <option>Spanish</option>
-  </select>
-
-  <p ngClass="select-name">Language (to)</p>
-  <select ngClass="select-dropdown">
-    <option selected>Russian</option>
-    <option>English</option>
-    <option>Spanish</option>
-  </select>
-
-  <p ngClass="select-name">Number of words</p>
-  <select ngClass="select-dropdown">
-    <option>5</option>
-    <option>10</option>
-    <option>15</option>
-    <option>20</option>
-  </select>
+  <form [formGroup]="model">
+    <p ngClass="select-name">Language</p>
+    <select formControlName="language" [value]="language" ngClass="select-dropdown">
+      <option value="ru">Russian</option>
+      <option value="es">Spanish</option>
+    </select>
+  
+    <p ngClass="select-name">Number of words</p>
+    <select formControlName="numberOfWords" [value]="numberOfWords" ngClass="select-dropdown">
+      <option>5</option>
+      <option>10</option>
+      <option>15</option>
+      <option>20</option>
+    </select>
+  </form>
   
   <div ngClass="page-link-block">
     <span ngClass="page-link" (click)="goToPage('recently-added')">Recently Added</span>

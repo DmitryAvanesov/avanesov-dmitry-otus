@@ -3,7 +3,10 @@ import { IResponse } from './translate-words.service';
 
 export interface IData {
   [date: string]: {
-    [word: string]: string
+    [word: string]: {
+      ru: string,
+      es: string
+    }
   }
 }
 
@@ -19,12 +22,14 @@ export class StoreWordsService {
   }
 
   storeWords(response: IResponse) {
-    const date = new Date();
-    const formattedDate = `${date.getDay()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+    const date = (new Date()).toLocaleString().split(',')[0];
 
-    this.data[formattedDate] = {
-      ...this.data[formattedDate],
-      [response.word]: response.translation
+    this.data[date] = {
+      ...this.data[date],
+      [response.word.toLowerCase()]: {
+        ru: response.translations.ru.toLowerCase(),
+        es: response.translations.es.toLowerCase()
+      }
     };
 
     localStorage.setItem('data', JSON.stringify(this.data));
