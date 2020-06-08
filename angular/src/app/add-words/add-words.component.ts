@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AddWordsService } from '../add-words.service';
 import { TranslateWordsService } from '../translate-words.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-words',
@@ -14,7 +15,8 @@ export class AddWordsComponent implements OnInit {
 
   constructor(
     public addWords: AddWordsService,
-    private translateWords: TranslateWordsService
+    private translateWords: TranslateWordsService,
+    private router: Router
   ) {
     this.model = new FormGroup({
       text: new FormControl('')
@@ -23,6 +25,7 @@ export class AddWordsComponent implements OnInit {
 
   onAddWords() {
     this.addWords.addWords();
+    this.router.navigate(['/recently-added']);
   }
 
   ngOnInit() {
