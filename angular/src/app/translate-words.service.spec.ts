@@ -13,4 +13,10 @@ describe('TranslateWordService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should set text', () => {
+    service['text'] = 'test';
+    service.setText('new');
+    expect(service['text']).toBe('new');
+  });
 });

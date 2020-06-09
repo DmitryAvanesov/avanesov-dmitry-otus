@@ -1,9 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AddWordsService } from '../add-words.service';
 import { TranslateWordsService } from '../translate-words.service';
-import { strict } from 'assert';
-import { ChangePageService } from '../change-page.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-words',
@@ -17,7 +16,7 @@ export class AddWordsComponent implements OnInit {
   constructor(
     private addWords: AddWordsService,
     private translateWords: TranslateWordsService,
-    private changePage: ChangePageService
+    private router: Router
   ) {
     this.model = new FormGroup({
       text: new FormControl('')
@@ -26,11 +25,7 @@ export class AddWordsComponent implements OnInit {
 
   onAddWords() {
     this.addWords.addWords();
-    this.changePage.changePage('recently-added');
-  }
-
-  goToPage(page: string) {
-    this.changePage.changePage(page);
+    this.router.navigate(['/recently-added']);
   }
 
   ngOnInit() {

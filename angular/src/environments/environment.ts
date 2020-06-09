@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  url: "https://microsoft-translator-text.p.rapidapi.com/translate",
+  xRapidapiHost: "microsoft-translator-text.p.rapidapi.com",
+  xRapidapiKey: "a59547b963mshe74fe6a27de2227p140951jsn76298672df34"
 };
 
 /*

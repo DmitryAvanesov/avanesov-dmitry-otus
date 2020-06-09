@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StoreWordsService, IData } from '../store-words.service';
-import { ChangePageService } from '../change-page.service';
 import { ChangeSettingsService } from '../change-settings.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
@@ -23,15 +22,14 @@ export class GoComponent implements OnInit {
 
   constructor(
     private storeWords: StoreWordsService,
-    private changePage: ChangePageService,
     changeSettings: ChangeSettingsService
   ) {
     this.model = new FormGroup({
       translation: new FormControl('')
     });
 
-    this.language = localStorage.getItem('language');
-    this.numberOfWords = parseInt(localStorage.getItem('numberOfWords'));
+    this.language = localStorage.getItem('language') || 'ru';
+    this.numberOfWords = parseInt(localStorage.getItem('numberOfWords')) || 10;
     this.data = this.storeWords.data;
     this.currentNumber = 0;
     this.answers = new Array<boolean>(this.numberOfWords);
@@ -58,12 +56,8 @@ export class GoComponent implements OnInit {
     this.currentWord = Object.keys(this.data[this.currentDate])[Math.floor(Math.random() * Object.keys(this.data[this.currentDate]).length)];
   }
 
-  get word() {
-    return this.currentWord;
-  }
-
   checkTranslation() {
-    if (this.data[this.currentDate][this.currentWord][this.language] == this.currentTranslation) {
+    if (this.data[this.currentDate][this.currentWord][this.language] === this.currentTranslation) {
       this.answers[this.currentNumber++] = true;
     }
     else {
@@ -78,10 +72,6 @@ export class GoComponent implements OnInit {
     else {
       this.getRandom();
     }
-  }
-
-  goToPage(page: string) {
-    this.changePage.changePage(page);
   }
 
   ngOnInit() {

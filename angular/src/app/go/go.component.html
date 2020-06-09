@@ -2,7 +2,7 @@
   <h1 ngClass="page-title">Go</h1>
 
   <form [formGroup]="model" (submit)="checkTranslation()" ngClass="go-form">
-    <span ngClass="word">{{word}}</span>
+    <span ngClass="word">{{currentWord}}</span>
     <input formControlName="translation" [value]="currentTranslation" ngClass="translation" />   
     <button type="submit" [disabled]="currentNumber == numberOfWords" ngClass="submit-button">Check</button>
   </form>
@@ -10,14 +10,16 @@
   <div ngClass="answers">
     <div *ngFor="let answer of answers">
       <div *ngIf="answer === undefined" ngClass="undefined"></div>
-      <div *ngIf="answer === true" ngClass="right"></div>
-      <div *ngIf="answer === false" ngClass="wrong"></div>
+      <div *ngIf="answer" ngClass="right"></div>
+      <div *ngIf="!answer && answer != undefined" ngClass="wrong"></div>
     </div>
   </div>
 
   <div ngClass="page-link-block">
-    <span ngClass="page-link" (click)="goToPage('recently-added')">Recently Added</span>
-    <span ngClass="page-link" (click)="goToPage('add-words')">Add Words</span>
-    <span ngClass="page-link" (click)="goToPage('settings')">Settings</span>
+    <span [routerLink]="['/recently-added']" ngClass="page-link">Recently Added</span>
+    <span [routerLink]="['/add-words']" ngClass="page-link">Add Words</span>
+    <span [routerLink]="['/settings']" ngClass="page-link">Settings</span>
   </div>
 </div>
+
+<router-outlet></router-outlet>

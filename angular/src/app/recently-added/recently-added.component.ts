@@ -1,6 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StoreWordsService, IData } from '../store-words.service';
-import { ChangePageService } from '../change-page.service';
 import { ChangeSettingsService } from '../change-settings.service';
 
 @Component({
@@ -15,7 +14,6 @@ export class RecentlyAddedComponent implements OnInit {
 
   constructor(
     private storeWords: StoreWordsService,
-    private changePage: ChangePageService,
     changeSettings: ChangeSettingsService
   ) {
     this.language = localStorage.getItem('language');
@@ -34,10 +32,6 @@ export class RecentlyAddedComponent implements OnInit {
 
   getWords(date: string) {
     return Object.keys(this.data[date]);
-  }
-
-  goToPage(page: string) {
-    this.changePage.changePage(page);
   }
 
   ngOnInit() { }

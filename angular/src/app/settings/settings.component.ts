@@ -1,5 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ChangePageService } from '../change-page.service';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ChangeSettingsService } from '../change-settings.service';
 
@@ -15,7 +14,6 @@ export class SettingsComponent implements OnInit {
   numberOfWords: number;
 
   constructor(
-    private changePage: ChangePageService,
     private changeSettings: ChangeSettingsService
   ) {
     this.language = localStorage.getItem('language');
@@ -39,10 +37,6 @@ export class SettingsComponent implements OnInit {
         localStorage.setItem('numberOfWords', this.numberOfWords.toString());
       }
     );
-  }
-
-  goToPage(page: string) {
-    this.changePage.changePage(page);
   }
 
   ngOnInit() {
