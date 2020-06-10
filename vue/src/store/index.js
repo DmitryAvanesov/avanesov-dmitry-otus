@@ -27,6 +27,9 @@ export default new Vuex.Store({
     },
     changeDifficulty(state, newDifficulty) {
       state.difficulty = newDifficulty;
+    },
+    checkType(state, typeName) {
+      state.types[typeName] = !state.types[typeName];
     }
   }
 });

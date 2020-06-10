@@ -18,6 +18,50 @@
 
       <input @input="onChangeDifficulty" type="range" min="1" max="10" :value="difficulty" />
       <p>Difficulty: {{difficulty}}</p>
+
+      <div>
+        <input @input="onCheckType" type="checkbox" value="addition" :checked="types.addition" />
+        <span>Addition</span>
+      </div>
+
+      <div>
+        <input
+          @input="onCheckType"
+          type="checkbox"
+          value="subtraction"
+          :checked="types.subtraction"
+        />
+        <span>Subtraction</span>
+      </div>
+
+      <div>
+        <input
+          @input="onCheckType"
+          type="checkbox"
+          value="multiplication"
+          :checked="types.multiplication"
+        />
+        <span>Multiplication</span>
+      </div>
+
+      <div>
+        <input @input="onCheckType" type="checkbox" value="division" :checked="types.division" />
+        <span>Division</span>
+      </div>
+
+      <div>
+        <input
+          @input="onCheckType"
+          type="checkbox"
+          value="exponentiation"
+          :checked="types.exponentiation"
+        />
+        <span>Exponentiation</span>
+      </div>
+
+      <button>
+        <router-link to="/game">Play</router-link>
+      </button>
     </form>
   </div>
 </template>
@@ -41,7 +85,11 @@ export default {
     },
     onChangeDifficulty(e) {
       this.$store.commit("changeDifficulty", e.target.value);
-    }
+    },
+    onCheckType(e) {
+      this.$store.commit("checkType", e.target.value);
+    },
+    onPlayButtonClick() {}
   }
 };
 </script>
