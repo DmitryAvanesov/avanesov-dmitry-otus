@@ -5,7 +5,6 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    day: 1,
     lastResult: {
       solved: 20,
       total: 25
@@ -20,6 +19,9 @@ export default new Vuex.Store({
       division: true,
       exponentiation: false
     }
+  },
+  getters: {
+    typeNames: state => Object.keys(state.types)
   },
   mutations: {
     changeDuration(state, newDuration) {
