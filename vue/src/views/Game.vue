@@ -2,18 +2,21 @@
   <div id="game">
     <router-link class="cancel-button" to="/settings">Cancel</router-link>
     <timer />
+    <equation />
   </div>
 </template>
 
 <script>
 import Timer from "../components/Timer";
+import Equation from "../components/Equation";
 import { mapState } from "vuex";
 
 export default {
   name: "Game",
   computed: mapState(["duration", "difficulty", "types"]),
   components: {
-    timer: Timer
+    timer: Timer,
+    equation: Equation
   }
 };
 </script>
