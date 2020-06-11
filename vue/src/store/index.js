@@ -10,8 +10,20 @@ export default new Vuex.Store({
       total: 25
     },
     precision: 75,
-    duration: 3,
-    difficulty: 5,
+    ranges: {
+      duration: {
+        min: 1,
+        max: 5,
+        value: 3,
+        label: 'Duration (min)'
+      },
+      difficulty: {
+        min: 1,
+        max: 10,
+        value: 5,
+        label: 'Difficulty'
+      }
+    },
     types: {
       addition: true,
       subtraction: true,
@@ -21,14 +33,12 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    rangeNames: state => Object.keys(state.ranges),
     typeNames: state => Object.keys(state.types)
   },
   mutations: {
-    changeDuration(state, newDuration) {
-      state.duration = newDuration;
-    },
-    changeDifficulty(state, newDifficulty) {
-      state.difficulty = newDifficulty;
+    changeRange(state, payload) {
+      state.ranges[payload.rangeName].value = payload.newRangeValue;
     },
     checkType(state, typeName) {
       state.types[typeName] = !state.types[typeName];

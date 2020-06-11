@@ -1,63 +1,37 @@
 <template>
   <div id="settings">
     <div class="greeting-header">Hello!</div>
-    <div class="stats">
-      <p>Welcome to the training day #{{day}}.</p>
-      <p>
-        Your last result is
-        <span class="highlight">{{lastResult.solved}}/{{lastResult.total}}</span>.
-      </p>
-      <p>The average precision is {{precision}}%.</p>
-    </div>
+    <stats />
 
     <form>
       <p class="settings-header">Settings</p>
-
-      <input @input="onChangeDuration" type="range" min="1" max="5" :value="duration" />
-      <p class="range-label">Duration: {{duration}} min</p>
-
-      <input @input="onChangeDifficulty" type="range" min="1" max="10" :value="difficulty" />
-      <p class="range-label">Difficulty: {{difficulty}}</p>
-
-      <div class="checkbox-item" v-for="typeName in typeNames" :key="typeName.id">
-        <input @input="onCheckType" type="checkbox" :value="typeName" :checked="types[typeName]" />
-        <span class="checkbox-label">{{typeName}}</span>
-      </div>
-
+      <range v-for="rangeName in rangeNames" :rangeName="rangeName" :key="rangeName" />
+      <type v-for="typeName in typeNames" :typeName="typeName" :key="typeName" />
       <router-link class="play-button" to="/game">Play</router-link>
     </form>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import Stats from "../components/Stats";
+import Type from "../components/Type";
+import Range from "../components/Range";
 
 export default {
   name: "Settings",
   data() {
     return {
-      day: parseInt(Date.now() / 8.64e+7) - 18423,
+      rangeNames: this.$store.getters.rangeNames,
       typeNames: this.$store.getters.typeNames
     };
   },
-  computed: mapState([
-    "lastResult",
-    "precision",
-    "duration",
-    "difficulty",
-    "types"
-  ]),
   methods: {
-    onChangeDuration(e) {
-      this.$store.commit("changeDuration", e.target.value);
-    },
-    onChangeDifficulty(e) {
-      this.$store.commit("changeDifficulty", e.target.value);
-    },
-    onCheckType(e) {
-      this.$store.commit("checkType", e.target.value);
-    },
     onPlayButtonClick() {}
+  },
+  components: {
+    stats: Stats,
+    range: Range,
+    type: Type
   }
 };
 </script>
@@ -73,42 +47,9 @@ export default {
     margin-bottom: 15px;
   }
 
-  .stats {
-    margin-bottom: 25px;
-
-    * {
-      margin: 0 0 5px 0;
-
-      .highlight {
-        font-weight: bold;
-      }
-    }
-  }
-
   .settings-header {
     margin: 0 0 20px 0;
     font-size: 32px;
-  }
-
-  .range-label {
-    margin: 0 0 15px 0;
-
-    &:last-of-type {
-      margin-bottom: 25px;
-    }
-  }
-
-  .checkbox-item {
-    margin-bottom: 5px;
-
-    &:last-of-type {
-      margin-bottom: 50px;
-    }
-
-    .checkbox-label {
-      margin-left: 5px;
-      text-transform: capitalize;
-    }
   }
 
   .play-button {
