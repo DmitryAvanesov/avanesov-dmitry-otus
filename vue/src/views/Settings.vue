@@ -7,7 +7,11 @@
       <p class="settings-header">Settings</p>
       <range v-for="rangeName in rangeNames" :rangeName="rangeName" :key="rangeName" />
       <type v-for="typeName in typeNames" :typeName="typeName" :key="typeName" />
-      <router-link class="play-button" to="/game">Play</router-link>
+      <router-link
+        class="play-button"
+        to="/game"
+        :event="numberOfCheckedTypes == 0 ? '' : 'click'"
+      >Play</router-link>
     </form>
   </div>
 </template>
@@ -16,6 +20,7 @@
 import Stats from "../components/Stats";
 import Type from "../components/Type";
 import Range from "../components/Range";
+import { mapState } from "vuex";
 
 export default {
   name: "Settings",
@@ -25,9 +30,7 @@ export default {
       typeNames: this.$store.getters.typeNames
     };
   },
-  methods: {
-    onPlayButtonClick() {}
-  },
+  computed: mapState(["numberOfCheckedTypes"]),
   components: {
     stats: Stats,
     range: Range,

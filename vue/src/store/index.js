@@ -30,7 +30,8 @@ export default new Vuex.Store({
       multiplication: true,
       division: true,
       exponentiation: false
-    }
+    },
+    numberOfCheckedTypes: 4
   },
   getters: {
     rangeNames: state => Object.keys(state.ranges),
@@ -42,6 +43,10 @@ export default new Vuex.Store({
     },
     checkType(state, typeName) {
       state.types[typeName] = !state.types[typeName];
+
+      if (!state.types[typeName]) {
+        state.numberOfCheckedTypes--;
+      }
     }
   }
 });
