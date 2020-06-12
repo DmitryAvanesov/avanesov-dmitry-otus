@@ -15,66 +15,121 @@ import { mapState } from "vuex";
 export default {
   name: "Equation",
   computed: mapState(["ranges", "types"]),
-  created: function() {
-    this.knownValue = Math.floor(
-      Math.floor(Math.random() * (2 ** this.ranges.difficulty.value + 10))
-    );
-
-    const numberOfArithmetics =
-      Math.floor(Math.random() * (this.ranges.difficulty.value / 3)) + 1;
-
-    this.operators = new Array();
-    this.unknownValues = new Array();
-    this.guessedValues = new Array();
-    this.result = new Array();
-    this.result.push(this.knownValue);
-
-    for (let i = 0; i < numberOfArithmetics; i++) {
-      const operatorCoef = Math.random() * this.ranges.difficulty.value;
-
-      this.operators.push(
-        operatorCoef < 2 && this.types.addition
-          ? "+"
-          : operatorCoef < 4 && this.types.subtraction
-          ? "-"
-          : operatorCoef < 6 && this.types.multiplication
-          ? "*"
-          : operatorCoef < 8 && this.types.division
-          ? "/"
-          : this.types.exponentiation
-          ? "**"
-          : this.types.division
-          ? "/"
-          : this.types.multiplication
-          ? "*"
-          : this.types.subtraction
-          ? "-"
-          : "+"
+  methods: {
+    setValues() {
+      this.knownValue = Math.floor(
+        Math.floor(Math.random() * (2 ** this.ranges.difficulty.value + 10))
       );
 
-      this.unknownValues.push(
-        this.operators == "**"
-          ? Math.floor(Math.random() * (this.ranges.difficulty.value / 3)) + 1
-          : Math.floor(Math.random() * (2 ** this.ranges.difficulty.value + 10))
-      );
+      this.numberOfArithmetics =
+        Math.floor(Math.random() * (this.ranges.difficulty.value / 3)) + 1;
 
-      this.guessedValues.push(undefined);
+      this.operators = new Array();
+      this.unknownValues = new Array();
+      this.guessedValues = new Array();
+      this.result = new Array();
+      this.result.push(this.knownValue);
+    },
+    randomizeEquation() {
+      for (let i = 0; i < this.numberOfArithmetics; i++) {
+        const operatorCoef = Math.random() * this.ranges.difficulty.value;
 
-      this.result.push(this.operators[i]);
-      this.result.push(this.unknownValues[i]);
+        this.operators.push(
+          operatorCoef < 2 && this.types.addition
+            ? "+"
+            : operatorCoef < 4 && this.types.subtraction
+            ? "-"
+            : operatorCoef < 6 && this.types.multiplication
+            ? "*"
+            : operatorCoef < 8 && this.types.division
+            ? "/"
+            : this.types.exponentiation
+            ? "**"
+            : this.types.division
+            ? "/"
+            : this.types.multiplication
+            ? "*"
+            : this.types.subtraction
+            ? "-"
+            : "+"
+        );
 
-      for (const [index, value] of this.result.entries()) {
-        if (value == "**") {
+        this.unknownValues.push(
+          this.operators[i] == "**"
+            ? Math.floor(Math.random() * (this.ranges.difficulty.value / 3)) + 1
+            : Math.floor(
+                Math.random() * (2 ** this.ranges.difficulty.value + 10)
+              )
+        );
+
+        this.guessedValues.push(undefined);
+
+        this.result.push(this.operators[i]);
+        this.result.push(this.unknownValues[i]);
+      }
+    },
+    getResult() {
+      let position = 1;
+
+      while (position < this.result.length) {
+        if (this.result[position] == "**") {
           this.result.splice(
-            index - 1,
+            position - 1,
             3,
-            this.result[index - 1] ** this.result[index + 1]
+            this.result[position - 1] ** this.result[position + 1]
           );
-
-          console.log(this.result);
+        } else {
+          position += 2;
         }
       }
+
+      position = 1;
+
+      while (position < this.result.length) {
+        if (this.result[position] == "/") {
+          this.result.splice(
+            position - 1,
+            3,
+            parseInt(this.result[position - 1] / this.result[position + 1])
+          );
+        } else if (this.result[position] == "*") {
+          this.result.splice(
+            position - 1,
+            3,
+            this.result[position - 1] * this.result[position + 1]
+          );
+        } else {
+          position += 2;
+        }
+      }
+
+      position = 1;
+
+      while (position < this.result.length) {
+        if (this.result[position] == "-") {
+          this.result.splice(
+            position - 1,
+            3,
+            this.result[position - 1] - this.result[position + 1]
+          );
+        } else if (this.result[position] == "+") {
+          this.result.splice(
+            position - 1,
+            3,
+            this.result[position - 1] + this.result[position + 1]
+          );
+        } else {
+          position += 2;
+        }
+      }
+
+      this.result = this.result[0];
     }
+  },
+  created: function() {
+    this.setValues();
+    this.randomizeEquation();
+    this.getResult();
   }
 };
 </script>
