@@ -5,7 +5,7 @@
       Your last result is
       <span class="highlight">{{lastResult.solved}}/{{lastResult.total}}</span>.
     </p>
-    <p>The average precision is {{precision}}%.</p>
+    <p>The average precision is {{(allResults.solved / allResults.total * 100).toFixed(2)}}%.</p>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
       day: parseInt(Date.now() / 8.64e7) - 18423
     };
   },
-  computed: mapState(["lastResult", "precision"])
+  computed: mapState(["lastResult", "allResults"])
 };
 </script>
 

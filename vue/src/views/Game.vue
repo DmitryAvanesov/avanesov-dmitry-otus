@@ -7,6 +7,7 @@
     <switch-button :direction="'<'" />
     <switch-button :direction="'>'" />
     <button @click="onResetButtonClick" class="reset-button">C</button>
+    <button @click="onConfirmButtonClick" class="confirm-button">=</button>
   </div>
 </template>
 
@@ -23,6 +24,10 @@ export default {
   methods: {
     onResetButtonClick() {
       this.$store.commit("resetNumber");
+    },
+    onConfirmButtonClick() {
+      this.$store.commit("checkConfirmation");
+      this.$store.commit("setEquation");
     }
   },
   components: {

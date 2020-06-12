@@ -20,6 +20,7 @@ export default {
       if (this.secondsPassed < this.ranges.duration.value * 60) {
         this.secondsPassed++;
       } else {
+        this.$store.commit("finishGame");
         this.$router.go(-1);
       }
     }, 1000);
