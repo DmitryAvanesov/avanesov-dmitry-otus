@@ -6,6 +6,7 @@
     <number-button v-for="number in 10" :number="number - 1" :key="number" />
     <switch-button :direction="'<'" />
     <switch-button :direction="'>'" />
+    <button @click="onResetButtonClick" class="reset-button">C</button>
   </div>
 </template>
 
@@ -19,6 +20,11 @@ import { mapState } from "vuex";
 export default {
   name: "Game",
   computed: mapState(["duration", "difficulty", "types"]),
+  methods: {
+    onResetButtonClick() {
+      this.$store.commit("resetNumber");
+    }
+  },
   components: {
     timer: Timer,
     equation: Equation,

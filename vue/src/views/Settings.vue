@@ -9,6 +9,7 @@
       <type v-for="typeName in typeNames" :typeName="typeName" :key="typeName" />
       <router-link
         class="play-button"
+        :class="{'disabled-button': numberOfCheckedTypes == 0}"
         to="/game"
         :event="numberOfCheckedTypes == 0 ? '' : 'click'"
       >Play</router-link>
@@ -63,6 +64,11 @@ export default {
     font-size: 22px;
     text-decoration: none;
     color: white;
+  }
+
+  .disabled-button {
+    background-color: lightgray;
+    cursor: default;
   }
 }
 </style>
