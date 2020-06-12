@@ -10,12 +10,12 @@ export default new Vuex.Store({
         solved: 0,
         total: 0
       },
-      solved: localStorage.getItem("lastResult") ? localStorage.getItem("lastResult").solved : 0,
-      total: localStorage.getItem("lastResult") ? localStorage.getItem("lastResult").total : 0
+      solved: localStorage.getItem("lastResult") ? JSON.parse(localStorage.getItem("lastResult")).solved : 0,
+      total: localStorage.getItem("lastResult") ? JSON.parse(localStorage.getItem("lastResult")).total : 0
     },
     allResults: {
-      solved: localStorage.getItem("allResult") ? localStorage.getItem("allResult").solved : 0,
-      total: localStorage.getItem("allResult") ? localStorage.getItem("allResult").total : 0
+      solved: localStorage.getItem("allResults") ? JSON.parse(localStorage.getItem("allResults")).solved : 0,
+      total: localStorage.getItem("allResults") ? JSON.parse(localStorage.getItem("allResults")).total : 0
     },
     ranges: {
       duration: {
@@ -192,7 +192,7 @@ export default new Vuex.Store({
 
       for (let i = 0; i < state.unknownValues.length; i++) {
         confirmedResult.push(state.operators[i]);
-        confirmedResult.push(state.unknownValues[i]);
+        confirmedResult.push(state.guessedValues[i]);
       }
 
       let position = 1;
@@ -261,15 +261,15 @@ export default new Vuex.Store({
       state.allResults.solved += state.lastResult.solved;
       state.allResults.total += state.lastResult.total;
 
-      localStorage.setItem("lastResult", {
+      localStorage.setItem("lastResult", JSON.stringify({
         solved: state.lastResult.solved,
         total: state.lastResult.total
-      });
+      }));
 
-      localStorage.setItem("allResults", {
+      localStorage.setItem("allResults", JSON.stringify({
         solved: state.allResults.solved,
         total: state.allResults.total
-      })
+      }))
     }
   }
 });

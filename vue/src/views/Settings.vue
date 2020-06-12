@@ -36,6 +36,9 @@ export default {
     stats: Stats,
     range: Range,
     type: Type
+  },
+  beforeMount: function() {
+    this.$store.commit("setGame");
   }
 };
 </script>
