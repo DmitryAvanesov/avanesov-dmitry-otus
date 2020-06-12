@@ -55,6 +55,9 @@ export default new Vuex.Store({
     },
     addNumber(state, number) {
       Vue.set(state.guessedValues, state.chosenValue, state.guessedValues[state.chosenValue] ? parseInt(`${state.guessedValues[state.chosenValue]}${number}`) : number);
+    },
+    switchChosenValue(state, direction) {
+      state.chosenValue = direction == "<" ? Math.max(0, state.chosenValue - 1) : Math.min(state.guessedValues.length, state.chosenValue + 1);
     }
   }
 });

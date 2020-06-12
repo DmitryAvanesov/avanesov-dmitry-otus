@@ -1,10 +1,10 @@
 <template>
   <div class="equation">
     <span>{{knownValue}}</span>
-    <span
-      v-for="(operator, index) in operators"
-      :key="index"
-    >{{operator}} {{guessedValues[index] || '___'}}</span>
+    <span v-for="(operator, index) in operators" :key="index">
+      {{operator}}
+      <span :class="{chosen: chosenValue == index}">{{guessedValues[index] || '___'}}</span>
+    </span>
     <span>= {{result}}</span>
   </div>
 </template>
@@ -14,7 +14,7 @@ import { mapState } from "vuex";
 
 export default {
   name: "Equation",
-  computed: mapState(["ranges", "types", "guessedValues"]),
+  computed: mapState(["ranges", "types", "guessedValues", "chosenValue"]),
   methods: {
     setValues() {
       this.knownValue = Math.floor(
@@ -139,8 +139,12 @@ export default {
   width: fit-content;
   font-size: 40px;
 
-  * {
-    margin-right: 15px;
+  & > * {
+    margin-right: 10px;
+  }
+
+  .chosen {
+    font-weight: bold;
   }
 }
 </style>

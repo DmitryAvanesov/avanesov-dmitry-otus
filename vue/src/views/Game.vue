@@ -4,6 +4,8 @@
     <timer />
     <equation />
     <number-button v-for="number in 10" :number="number - 1" :key="number" />
+    <switch-button :direction="'<'" />
+    <switch-button :direction="'>'" />
   </div>
 </template>
 
@@ -11,6 +13,7 @@
 import Timer from "../components/Timer";
 import Equation from "../components/Equation";
 import NumberButton from "../components/NumberButton";
+import SwitchButton from "../components/SwitchButton";
 import { mapState } from "vuex";
 
 export default {
@@ -19,7 +22,8 @@ export default {
   components: {
     timer: Timer,
     equation: Equation,
-    "number-button": NumberButton
+    "number-button": NumberButton,
+    "switch-button": SwitchButton
   }
 };
 </script>
