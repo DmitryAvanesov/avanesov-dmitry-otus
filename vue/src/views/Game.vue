@@ -3,12 +3,14 @@
     <router-link class="cancel-button" to="/settings">Cancel</router-link>
     <timer />
     <equation />
+    <number-button v-for="number in 10" :number="number - 1" :key="number" />
   </div>
 </template>
 
 <script>
 import Timer from "../components/Timer";
 import Equation from "../components/Equation";
+import NumberButton from "../components/NumberButton";
 import { mapState } from "vuex";
 
 export default {
@@ -16,7 +18,8 @@ export default {
   computed: mapState(["duration", "difficulty", "types"]),
   components: {
     timer: Timer,
-    equation: Equation
+    equation: Equation,
+    "number-button": NumberButton
   }
 };
 </script>

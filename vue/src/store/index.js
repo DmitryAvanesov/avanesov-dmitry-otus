@@ -31,7 +31,9 @@ export default new Vuex.Store({
       division: true,
       exponentiation: false
     },
-    numberOfCheckedTypes: 4
+    numberOfCheckedTypes: 4,
+    guessedValues: new Array(),
+    chosenValue: 0
   },
   getters: {
     rangeNames: state => Object.keys(state.ranges),
@@ -47,6 +49,12 @@ export default new Vuex.Store({
       if (!state.types[typeName]) {
         state.numberOfCheckedTypes--;
       }
+    },
+    setGuessedValuesSize(state, size) {
+      state.guessedValues = new Array(size);
+    },
+    addNumber(state, number) {
+      Vue.set(state.guessedValues, state.chosenValue, state.guessedValues[state.chosenValue] ? parseInt(`${state.guessedValues[state.chosenValue]}${number}`) : number);
     }
   }
 });

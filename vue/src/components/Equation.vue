@@ -14,7 +14,7 @@ import { mapState } from "vuex";
 
 export default {
   name: "Equation",
-  computed: mapState(["ranges", "types"]),
+  computed: mapState(["ranges", "types", "guessedValues"]),
   methods: {
     setValues() {
       this.knownValue = Math.floor(
@@ -26,7 +26,6 @@ export default {
 
       this.operators = new Array();
       this.unknownValues = new Array();
-      this.guessedValues = new Array();
       this.result = new Array();
       this.result.push(this.knownValue);
     },
@@ -62,11 +61,11 @@ export default {
               )
         );
 
-        this.guessedValues.push(undefined);
-
         this.result.push(this.operators[i]);
         this.result.push(this.unknownValues[i]);
       }
+
+      this.$store.commit("setGuessedValuesSize", this.numberOfArithmetics);
     },
     getResult() {
       let position = 1;
