@@ -3,7 +3,9 @@
     <span>{{knownValue}}</span>
     <span v-for="(operator, index) in operators" :key="index">
       {{operator}}
-      <span :class="{chosen: chosenValue == index}">{{guessedValues[index] || '___'}}</span>
+      <span
+        :class="{chosen: chosenValue == index}"
+      >{{guessedValues[index] || guessedValues[index] == 0 ? guessedValues[index] : '___'}}</span>
     </span>
     <span>= {{result}}</span>
   </div>
