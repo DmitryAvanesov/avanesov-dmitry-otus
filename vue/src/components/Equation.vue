@@ -34,7 +34,7 @@ export default {
 .equation {
   margin: 50px auto;
   width: fit-content;
-  font-size: 40px;
+  font-size: 42px;
 
   & > * {
     margin-right: 10px;

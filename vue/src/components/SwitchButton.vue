@@ -15,4 +15,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.switch-button {
+  width: 75px;
+  height: 75px;
+  font-size: 36px;
+  font-weight: bold;
+  border: 5px solid black;
+  border-radius: 50%;
+  background-color: white;
+  margin: 10px 15px;
+  cursor: pointer;
+}
 </style>

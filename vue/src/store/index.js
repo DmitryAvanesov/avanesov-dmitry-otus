@@ -44,7 +44,8 @@ export default new Vuex.Store({
     unknownValues: new Array(),
     guessedValues: new Array(),
     result: new Array(),
-    chosenValue: 0
+    chosenValue: 0,
+    checkHighlight: undefined
   },
   getters: {
     rangeNames: state => Object.keys(state.ranges),
@@ -253,7 +254,15 @@ export default new Vuex.Store({
 
       if (confirmedResult == state.result) {
         state.lastResult.current.solved++;
+        state.checkHighlight = 'correct';
       }
+      else {
+        state.checkHighlight = 'incorrect';
+      }
+
+      setTimeout(() => {
+        state.checkHighlight = undefined;
+      }, 2000);
     },
     finishGame(state) {
       state.lastResult.solved = state.lastResult.current.solved;
